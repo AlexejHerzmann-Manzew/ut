@@ -30,6 +30,7 @@ void render() {
     glLoadIdentity();
     glOrtho(0, glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT), 0, 0, 1000);
     glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
     game.render();
     glEnd();
     glFlush();

@@ -9,6 +9,7 @@
 #define	GAME_HPP
 
 #include "Unit.hpp"
+#include "Faction.hpp"
 
 class Game {
 public:
@@ -18,6 +19,7 @@ public:
     void render();
     void addUnit(Unit* unit);
     void removeUnit(Unit* unit);
+    Faction* faction[2];
     Unit* unit[256];
 };
 
