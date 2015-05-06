@@ -7,8 +7,16 @@
       <itemPath>Color.hpp</itemPath>
       <itemPath>Faction.hpp</itemPath>
       <itemPath>Game.hpp</itemPath>
+      <itemPath>Point.hpp</itemPath>
+      <itemPath>../../Documents/pngutil/lodepng-master/examples/dfsdf/SOIL.h</itemPath>
       <itemPath>Terrain.hpp</itemPath>
+      <itemPath>Texture.hpp</itemPath>
       <itemPath>Unit.hpp</itemPath>
+      <itemPath>../../Documents/pngutil/lodepng-master/examples/dfsdf/image_DXT.h</itemPath>
+      <itemPath>../../Documents/pngutil/lodepng-master/examples/dfsdf/image_helper.h</itemPath>
+      <itemPath>../../Documents/pngutil/lodepng-master/examples/dfsdf/stb_image_aug.c</itemPath>
+      <itemPath>../../Documents/pngutil/lodepng-master/examples/dfsdf/stbi_DDS_aug.h</itemPath>
+      <itemPath>../../Documents/pngutil/lodepng-master/examples/dfsdf/stbi_DDS_aug_c.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -20,8 +28,13 @@
       <itemPath>Color.cpp</itemPath>
       <itemPath>Faction.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
+      <itemPath>Point.cpp</itemPath>
+      <itemPath>../../Documents/pngutil/lodepng-master/examples/dfsdf/SOIL.c</itemPath>
       <itemPath>Terrain.cpp</itemPath>
+      <itemPath>Texture.cpp</itemPath>
       <itemPath>Unit.cpp</itemPath>
+      <itemPath>../../Documents/pngutil/lodepng-master/examples/dfsdf/image_DXT.c</itemPath>
+      <itemPath>../../Documents/pngutil/lodepng-master/examples/dfsdf/image_helper.c</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -36,6 +49,9 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>../../Documents/pngutil/lodepng-master/examples/dfsdf</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="Debug" type="1">
@@ -56,6 +72,51 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/SOIL.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/SOIL.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/image_DXT.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/image_DXT.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/image_helper.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/image_helper.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/stb_image_aug.c"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/stbi_DDS_aug.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/stbi_DDS_aug_c.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="Color.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Color.hpp" ex="false" tool="3" flavor2="0">
@@ -68,9 +129,17 @@
       </item>
       <item path="Game.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Point.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Point.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Terrain.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Terrain.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Texture.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Texture.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Unit.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -99,6 +168,51 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/SOIL.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/SOIL.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/image_DXT.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/image_DXT.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/image_helper.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/image_helper.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/stb_image_aug.c"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/stbi_DDS_aug.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../../Documents/pngutil/lodepng-master/examples/dfsdf/stbi_DDS_aug_c.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="Color.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Color.hpp" ex="false" tool="3" flavor2="0">
@@ -111,9 +225,17 @@
       </item>
       <item path="Game.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Point.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Point.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Terrain.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Terrain.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Texture.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Texture.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Unit.cpp" ex="false" tool="1" flavor2="0">
       </item>

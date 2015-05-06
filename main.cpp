@@ -19,7 +19,10 @@
 using namespace std;
 
 void setUpDisplay() {
-    glClearColor(1.0, 1.0, 1.0, 1.0);
+    glClearColor(0.4, 0.8, 1.0, 1.0);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
+    glEnable(GL_TEXTURE_2D);
 }
 
 Game game;
@@ -38,7 +41,7 @@ void render() {
     glFlush();
 }
 
-void close(){
+void close() {
     glutDestroyWindow(0);
 }
 

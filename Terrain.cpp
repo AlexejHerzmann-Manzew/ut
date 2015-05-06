@@ -12,6 +12,7 @@
 #include <GL/freeglut_std.h>
 
 #include "Terrain.hpp"
+#include "Point.hpp"
 
 using namespace std;
 
@@ -61,30 +62,30 @@ void Terrain::setTerrain(unsigned short int value, int x, int y) {
         terrain[x][y] = value;
 }
 
-void Terrain::render() {
-    int width = glutGet(GLUT_WINDOW_WIDTH)/5;
-    int height = glutGet(GLUT_WINDOW_HEIGHT)/5;
-    for (int x = 0; x < width; x++) {
-        for (int y = 0; y < height; y++) {
+void Terrain::render(double cx, double cy) {
+    int width = glutGet(GLUT_WINDOW_WIDTH) / 5;
+    int height = glutGet(GLUT_WINDOW_HEIGHT) / 5;
+    for (int x = 0 + cx / 5; x <= width + cx / 5; x++) {
+        for (int y = 0 + cy / 5; y <= height + cy / 5; y++) {
             float light;
             glBegin(GL_QUADS);
             {
-                light = this->getTerrain(x, y)/256.0f;
+                light = this->getTerrain(x, y) / 256.0f;
                 glColor3f(light, light, light);
                 glVertex2f(x * 5, y * 5);
                 glTexCoord2f(0, 0);
 
-                light = this->getTerrain(x + 1, y)/256.0f;
+                light = this->getTerrain(x + 1, y) / 256.0f;
                 glColor3f(light, light, light);
                 glVertex2f(x * 5 + 5, y * 5);
                 glTexCoord2f(1, 0);
 
-                light = this->getTerrain(x + 1, y + 1)/256.0f;
+                light = this->getTerrain(x + 1, y + 1) / 256.0f;
                 glColor3f(light, light, light);
                 glVertex2f(x * 5 + 5, y * 5 + 5);
                 glTexCoord2f(1, 1);
 
-                light = this->getTerrain(x, y + 1)/256.0f;
+                light = this->getTerrain(x, y + 1) / 256.0f;
                 glColor3f(light, light, light);
                 glVertex2f(x * 5, y * 5 + 5);
                 glTexCoord2f(0, 1);

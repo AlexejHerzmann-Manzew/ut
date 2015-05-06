@@ -5,6 +5,8 @@
  * Created on May 5, 2015, 10:25 PM
  */
 
+#include "Point.hpp"
+
 #ifndef TERRAIN_HPP
 #define	TERRAIN_HPP
 
@@ -14,7 +16,7 @@ public:
     Terrain(const Terrain& orig);
     unsigned short int getTerrain(int, int);
     void setTerrain(unsigned short int, int, int);
-    void render();
+    void render(double, double);
     virtual ~Terrain();
 private:
     unsigned short int terrain[4096][4096];

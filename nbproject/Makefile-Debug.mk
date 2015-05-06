@@ -35,10 +35,15 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/_ext/1838568407/SOIL.o \
+	${OBJECTDIR}/_ext/1838568407/image_DXT.o \
+	${OBJECTDIR}/_ext/1838568407/image_helper.o \
 	${OBJECTDIR}/Color.o \
 	${OBJECTDIR}/Faction.o \
 	${OBJECTDIR}/Game.o \
+	${OBJECTDIR}/Point.o \
 	${OBJECTDIR}/Terrain.o \
+	${OBJECTDIR}/Texture.o \
 	${OBJECTDIR}/Unit.o \
 	${OBJECTDIR}/main.o
 
@@ -67,6 +72,21 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/training: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/training ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/_ext/1838568407/SOIL.o: ../../Documents/pngutil/lodepng-master/examples/dfsdf/SOIL.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1838568407
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1838568407/SOIL.o ../../Documents/pngutil/lodepng-master/examples/dfsdf/SOIL.c
+
+${OBJECTDIR}/_ext/1838568407/image_DXT.o: ../../Documents/pngutil/lodepng-master/examples/dfsdf/image_DXT.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1838568407
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1838568407/image_DXT.o ../../Documents/pngutil/lodepng-master/examples/dfsdf/image_DXT.c
+
+${OBJECTDIR}/_ext/1838568407/image_helper.o: ../../Documents/pngutil/lodepng-master/examples/dfsdf/image_helper.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1838568407
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1838568407/image_helper.o ../../Documents/pngutil/lodepng-master/examples/dfsdf/image_helper.c
+
 ${OBJECTDIR}/Color.o: Color.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -82,10 +102,20 @@ ${OBJECTDIR}/Game.o: Game.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Game.o Game.cpp
 
+${OBJECTDIR}/Point.o: Point.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Point.o Point.cpp
+
 ${OBJECTDIR}/Terrain.o: Terrain.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Terrain.o Terrain.cpp
+
+${OBJECTDIR}/Texture.o: Texture.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Texture.o Texture.cpp
 
 ${OBJECTDIR}/Unit.o: Unit.cpp 
 	${MKDIR} -p ${OBJECTDIR}

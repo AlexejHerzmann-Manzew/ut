@@ -11,6 +11,7 @@
 #include "Unit.hpp"
 #include "Faction.hpp"
 #include "Terrain.hpp"
+#include "Point.hpp"
 
 class Game {
 public:
@@ -20,6 +21,7 @@ public:
     void render();
     void addUnit(Unit* unit);
     void removeUnit(Unit* unit);
+    Point camera;
     Faction* faction[2];
     Unit* unit[256];
     Terrain terrain;

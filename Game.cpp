@@ -19,7 +19,7 @@ using namespace std;
 
 Game::Game() {
     this->faction[0] = new Faction("Ruby", new Color(1, 0, 0));
-    this->faction[1] = new Faction("Lapis", new Color(0, 0.2f, 1));
+    this->faction[1] = new Faction("Lapis", new Color(0, 0.4f, 1));
     addUnit(new Unit(250, 150, 1, 0));
     addUnit(new Unit(50, 50, 0.4, 0));
     addUnit(new Unit(150, 350, 0.1, 1));
@@ -39,7 +39,8 @@ Game::~Game() {
 }
 
 void Game::render() {
-    this->terrain.render();
+    glTranslated(-camera.x, -camera.y + 50, 0);
+    this->terrain.render(camera.x, camera.y);
     for(int i = 0; i < 256; i++){
         if(this->unit[i] != NULL){
             this->unit[i]->render();
