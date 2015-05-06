@@ -32,6 +32,7 @@ Unit::~Unit() {
 }
 
 void Unit::render() {
+    a+=0.05;
     double x = this->x, y = this->y, a = this->a;
     glTranslated(x, y, 0);
     glRotated(a / PI * 180, 0, 0, 1);

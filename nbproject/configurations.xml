@@ -7,6 +7,7 @@
       <itemPath>Color.hpp</itemPath>
       <itemPath>Faction.hpp</itemPath>
       <itemPath>Game.hpp</itemPath>
+      <itemPath>Terrain.hpp</itemPath>
       <itemPath>Unit.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -19,6 +20,7 @@
       <itemPath>Color.cpp</itemPath>
       <itemPath>Faction.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
+      <itemPath>Terrain.cpp</itemPath>
       <itemPath>Unit.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -66,6 +68,10 @@
       </item>
       <item path="Game.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Terrain.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Terrain.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Unit.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Unit.hpp" ex="false" tool="3" flavor2="0">
@@ -104,6 +110,10 @@
       <item path="Game.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Game.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Terrain.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Terrain.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Unit.cpp" ex="false" tool="1" flavor2="0">
       </item>

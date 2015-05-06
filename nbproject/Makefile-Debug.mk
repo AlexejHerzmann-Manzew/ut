@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Color.o \
 	${OBJECTDIR}/Faction.o \
 	${OBJECTDIR}/Game.o \
+	${OBJECTDIR}/Terrain.o \
 	${OBJECTDIR}/Unit.o \
 	${OBJECTDIR}/main.o
 
@@ -80,6 +81,11 @@ ${OBJECTDIR}/Game.o: Game.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Game.o Game.cpp
+
+${OBJECTDIR}/Terrain.o: Terrain.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Terrain.o Terrain.cpp
 
 ${OBJECTDIR}/Unit.o: Unit.cpp 
 	${MKDIR} -p ${OBJECTDIR}

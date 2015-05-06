@@ -23,6 +23,7 @@ Game::Game() {
     addUnit(new Unit(250, 150, 1, 0));
     addUnit(new Unit(50, 50, 0.4, 0));
     addUnit(new Unit(150, 350, 0.1, 1));
+    addUnit(new Unit(350, 300, -0.2, 1));
 }
 
 Game::Game(const Game& orig) {
@@ -38,6 +39,7 @@ Game::~Game() {
 }
 
 void Game::render() {
+    this->terrain.render();
     for(int i = 0; i < 256; i++){
         if(this->unit[i] != NULL){
             this->unit[i]->render();

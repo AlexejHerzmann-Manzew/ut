@@ -23,8 +23,10 @@ void setUpDisplay() {
 }
 
 Game game;
+bool done = false;
 
 void render() {
+    glViewport(0, 0, glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -36,13 +38,18 @@ void render() {
     glFlush();
 }
 
+void close(){
+    glutDestroyWindow(0);
+}
+
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowSize(800, 600);
     glutCreateWindow("Underground Terror");
     setUpDisplay();
-    glutDisplayFunc(render);
+    glutIdleFunc(render);
+    glutCloseFunc(close);
     glutMainLoop();
     return 0;
 }

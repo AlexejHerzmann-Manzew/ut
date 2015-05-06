@@ -10,6 +10,7 @@
 
 #include "Unit.hpp"
 #include "Faction.hpp"
+#include "Terrain.hpp"
 
 class Game {
 public:
@@ -21,6 +22,7 @@ public:
     void removeUnit(Unit* unit);
     Faction* faction[2];
     Unit* unit[256];
+    Terrain terrain;
 };
 
 #endif	/* GAME_HPP */
