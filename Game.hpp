@@ -33,6 +33,7 @@ public:
     Unit* unit[256];
     Terrain terrain;
     FogOfWar fow;
+    int player;
 };
 
 #endif	/* GAME_HPP */

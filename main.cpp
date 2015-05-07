@@ -11,6 +11,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <thread>
+#include <ctime>
 
 ////////////////////////////////////////////
 
@@ -67,13 +68,15 @@ void close() {
 }
 
 void tickThread() {
-    glutMainLoop();
+    while (true) {
+        game.tick();
+    }
 }
 
-void renderThread() {
-     while (true) {
-        game.tick();
+void smallTickThread() {
+    while (true) {
         game.smallTick();
+        this_thread::sleep_for(chrono::milliseconds(10));
     }
 }
 
@@ -90,7 +93,8 @@ int main(int argc, char** argv) {
     glutPassiveMotionFunc(handleMouseMotion);
     thread tickT(tickThread);
     tickT.detach();
-    thread renderT(renderThread);
-    renderT.join();
+    thread smallTickT(smallTickThread);
+    smallTickT.detach();
+    glutMainLoop();
     return 0;
 }

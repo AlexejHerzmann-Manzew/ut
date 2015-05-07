@@ -23,10 +23,11 @@ Game::Game() {
     display.height = 600;
     this->faction[0] = new Faction("Ruby", new Color(1, 0, 0));
     this->faction[1] = new Faction("Lapis", new Color(0, 0.4f, 1));
-    addUnit(new Unit(750, 850, 1, 0));
-    addUnit(new Unit(1250, 1250, 0.4, 0));
-    addUnit(new Unit(2150, 1350, 0.1, 1));
-    addUnit(new Unit(2350, 1300, -0.2, 1));
+    for (int i = 0; i < 128; i++) {
+        addUnit(new Unit(1000, 850, 1, 0));
+        addUnit(new Unit(2000, 850, 0.1, 1));
+    }
+
 }
 
 void Game::handleMouse(int button, int state, int x, int y) {
@@ -79,7 +80,6 @@ void Game::smallTick() {
             this->unit[i]->smallTick();
         }
     }
-    this->fow.update();
 }
 
 void Game::tick() {
@@ -88,8 +88,8 @@ void Game::tick() {
             this->unit[i]->tick();
         }
     }
+    this->fow.update();
 }
-
 
 void Game::addUnit(Unit* unit) {
     for (int i = 0; i < 256; i++) {
