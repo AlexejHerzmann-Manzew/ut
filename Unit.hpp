@@ -17,8 +17,10 @@ public:
     Unit(const Unit& orig);
     ~Unit();
     void render();
+    void tick();
+    void smallTick();
     int faction;
-    double x, y, a;
+    double x, y, a, radius;
     Game *game = NULL;
 private:
 

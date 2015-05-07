@@ -35,13 +35,13 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/_ext/1838568407/SOIL.o \
-	${OBJECTDIR}/_ext/1838568407/image_DXT.o \
-	${OBJECTDIR}/_ext/1838568407/image_helper.o \
 	${OBJECTDIR}/Color.o \
 	${OBJECTDIR}/Faction.o \
+	${OBJECTDIR}/ForOfWar.o \
 	${OBJECTDIR}/Game.o \
+	${OBJECTDIR}/Mouse.o \
 	${OBJECTDIR}/Point.o \
+	${OBJECTDIR}/Size.o \
 	${OBJECTDIR}/Terrain.o \
 	${OBJECTDIR}/Texture.o \
 	${OBJECTDIR}/Unit.o \
@@ -62,7 +62,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lglut -lGL -lGLU
+LDLIBSOPTIONS=-lglut -lGL -lGLU -pthread
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -72,60 +72,60 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/training: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/training ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/_ext/1838568407/SOIL.o: ../../Documents/pngutil/lodepng-master/examples/dfsdf/SOIL.c 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1838568407
-	${RM} "$@.d"
-	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1838568407/SOIL.o ../../Documents/pngutil/lodepng-master/examples/dfsdf/SOIL.c
-
-${OBJECTDIR}/_ext/1838568407/image_DXT.o: ../../Documents/pngutil/lodepng-master/examples/dfsdf/image_DXT.c 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1838568407
-	${RM} "$@.d"
-	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1838568407/image_DXT.o ../../Documents/pngutil/lodepng-master/examples/dfsdf/image_DXT.c
-
-${OBJECTDIR}/_ext/1838568407/image_helper.o: ../../Documents/pngutil/lodepng-master/examples/dfsdf/image_helper.c 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1838568407
-	${RM} "$@.d"
-	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1838568407/image_helper.o ../../Documents/pngutil/lodepng-master/examples/dfsdf/image_helper.c
-
 ${OBJECTDIR}/Color.o: Color.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Color.o Color.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Color.o Color.cpp
 
 ${OBJECTDIR}/Faction.o: Faction.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Faction.o Faction.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Faction.o Faction.cpp
+
+${OBJECTDIR}/ForOfWar.o: ForOfWar.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ForOfWar.o ForOfWar.cpp
 
 ${OBJECTDIR}/Game.o: Game.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Game.o Game.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Game.o Game.cpp
+
+${OBJECTDIR}/Mouse.o: Mouse.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Mouse.o Mouse.cpp
 
 ${OBJECTDIR}/Point.o: Point.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Point.o Point.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Point.o Point.cpp
+
+${OBJECTDIR}/Size.o: Size.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Size.o Size.cpp
 
 ${OBJECTDIR}/Terrain.o: Terrain.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Terrain.o Terrain.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Terrain.o Terrain.cpp
 
 ${OBJECTDIR}/Texture.o: Texture.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Texture.o Texture.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Texture.o Texture.cpp
 
 ${OBJECTDIR}/Unit.o: Unit.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Unit.o Unit.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Unit.o Unit.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:

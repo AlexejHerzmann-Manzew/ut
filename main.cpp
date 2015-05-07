@@ -5,12 +5,12 @@
  * Created on May 3, 2015, 2:11 PM
  */
 
-
-
+#include <iostream>
 #include <stdio.h>
 #include <GL/freeglut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
+#include <thread>
 
 ////////////////////////////////////////////
 
@@ -21,14 +21,25 @@ using namespace std;
 void setUpDisplay() {
     glClearColor(0.4, 0.8, 1.0, 1.0);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable(GL_BLEND);
     glEnable(GL_TEXTURE_2D);
 }
+
+int fps = 0;
+int frame = 0, ttime, timebase = 0;
 
 Game game;
 bool done = false;
 
+void handleMouse(int button, int state, int x, int y) {
+    game.handleMouse(button, state, x, y);
+}
+
+void handleMouseMotion(int x, int y) {
+    game.handleMouseMotion(x, y);
+}
+
 void render() {
+    
     glViewport(0, 0, glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_PROJECTION);
@@ -39,10 +50,31 @@ void render() {
     game.render();
     glEnd();
     glFlush();
+    
+    frame++;
+    ttime = glutGet(GLUT_ELAPSED_TIME);
+
+    if (ttime - timebase > 1000) {
+        fps = frame * 1000.0 / (ttime - timebase);
+        timebase = ttime;
+        frame = 0;
+        cout << "fps: " << fps << endl;
+    }
 }
 
 void close() {
     glutDestroyWindow(0);
+}
+
+void tickThread() {
+    glutMainLoop();
+}
+
+void renderThread() {
+     while (true) {
+        game.tick();
+        game.smallTick();
+    }
 }
 
 int main(int argc, char** argv) {
@@ -53,6 +85,12 @@ int main(int argc, char** argv) {
     setUpDisplay();
     glutIdleFunc(render);
     glutCloseFunc(close);
-    glutMainLoop();
+    glutMouseFunc(handleMouse);
+    glutMotionFunc(handleMouseMotion);
+    glutPassiveMotionFunc(handleMouseMotion);
+    thread tickT(tickThread);
+    tickT.detach();
+    thread renderT(renderThread);
+    renderT.join();
     return 0;
 }

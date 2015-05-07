@@ -6,6 +6,7 @@
  */
 
 #include <stdio.h>
+#include <math.h>
 #include <GL/freeglut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -18,39 +19,81 @@
 using namespace std;
 
 Game::Game() {
+    display.width = 800;
+    display.height = 600;
     this->faction[0] = new Faction("Ruby", new Color(1, 0, 0));
     this->faction[1] = new Faction("Lapis", new Color(0, 0.4f, 1));
-    addUnit(new Unit(250, 150, 1, 0));
-    addUnit(new Unit(50, 50, 0.4, 0));
-    addUnit(new Unit(150, 350, 0.1, 1));
-    addUnit(new Unit(350, 300, -0.2, 1));
+    addUnit(new Unit(750, 850, 1, 0));
+    addUnit(new Unit(1250, 1250, 0.4, 0));
+    addUnit(new Unit(2150, 1350, 0.1, 1));
+    addUnit(new Unit(2350, 1300, -0.2, 1));
 }
 
-Game::Game(const Game& orig) {
-    Game();
+void Game::handleMouse(int button, int state, int x, int y) {
+    mouse.handleMouse(button, state, x, y);
+}
+
+void Game::handleMouseMotion(int x, int y) {
+    mouse.handleMouseMotion(x, y);
+    if (mouse.right) {
+        camera.x -= mouse.dx;
+        camera.y -= mouse.dy;
+        if (camera.x < 0)
+            camera.x = 0;
+        if (camera.y < -40)
+            camera.y = -40;
+        if (camera.x >= 20480 - display.width)
+            camera.x = 20480 - display.width;
+        if (camera.y >= 20480 - display.height)
+            camera.y = 20480 - display.height;
+    }
+
 }
 
 Game::~Game() {
-    for(int i = 0; i < 256; i++){
-        if(this->unit[i] != NULL){
+    for (int i = 0; i < 256; i++) {
+        if (this->unit[i] != NULL) {
             this->unit[i]->~Unit();
         }
     }
 }
 
 void Game::render() {
-    glTranslated(-camera.x, -camera.y + 50, 0);
+    display.width = glutGet(GLUT_WINDOW_WIDTH);
+    display.height = glutGet(GLUT_WINDOW_HEIGHT);
+    glTranslated(-camera.x, -camera.y, 0);
     this->terrain.render(camera.x, camera.y);
-    for(int i = 0; i < 256; i++){
-        if(this->unit[i] != NULL){
+    glEnable(GL_BLEND);
+    for (int i = 0; i < 256; i++) {
+        if (this->unit[i] != NULL) {
             this->unit[i]->render();
+        }
+    }
+    this->fow.render(camera.x, camera.y);
+    glDisable(GL_BLEND);
+}
+
+void Game::smallTick() {
+    for (int i = 0; i < 256; i++) {
+        if (this->unit[i] != NULL) {
+            this->unit[i]->smallTick();
+        }
+    }
+    this->fow.update();
+}
+
+void Game::tick() {
+    for (int i = 0; i < 256; i++) {
+        if (this->unit[i] != NULL) {
+            this->unit[i]->tick();
         }
     }
 }
 
+
 void Game::addUnit(Unit* unit) {
-    for(int i = 0; i < 256; i++){
-        if(this->unit[i] == NULL){
+    for (int i = 0; i < 256; i++) {
+        if (this->unit[i] == NULL) {
             this->unit[i] = unit;
             unit->game = this;
             return;
@@ -59,8 +102,8 @@ void Game::addUnit(Unit* unit) {
 }
 
 void Game::removeUnit(Unit* unit) {
-    for(int i = 0; i < 256; i++){
-        if(this->unit[i] == unit){
+    for (int i = 0; i < 256; i++) {
+        if (this->unit[i] == unit) {
             this->unit[i] = NULL;
             unit->~Unit();
             return;

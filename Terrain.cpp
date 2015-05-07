@@ -58,7 +58,7 @@ unsigned short int Terrain::getTerrain(int x, int y) {
 }
 
 void Terrain::setTerrain(unsigned short int value, int x, int y) {
-    if (x >= 0 && y >= 0 && x < 4096 && y < 256)
+    if (x >= 0 && y >= 0 && x < 4096 && y < 4096)
         terrain[x][y] = value;
 }
 
@@ -71,22 +71,22 @@ void Terrain::render(double cx, double cy) {
             glBegin(GL_QUADS);
             {
                 light = this->getTerrain(x, y) / 256.0f;
-                glColor3f(light, light, light);
+                glColor3f(light, light * 0.8f, light * 0.5f);
                 glVertex2f(x * 5, y * 5);
                 glTexCoord2f(0, 0);
 
                 light = this->getTerrain(x + 1, y) / 256.0f;
-                glColor3f(light, light, light);
+                glColor3f(light, light * 0.8f, light * 0.5f);
                 glVertex2f(x * 5 + 5, y * 5);
                 glTexCoord2f(1, 0);
 
                 light = this->getTerrain(x + 1, y + 1) / 256.0f;
-                glColor3f(light, light, light);
+                glColor3f(light, light * 0.8f, light * 0.5f);
                 glVertex2f(x * 5 + 5, y * 5 + 5);
                 glTexCoord2f(1, 1);
 
                 light = this->getTerrain(x, y + 1) / 256.0f;
-                glColor3f(light, light, light);
+                glColor3f(light, light * 0.8f, light * 0.5f);
                 glVertex2f(x * 5, y * 5 + 5);
                 glTexCoord2f(0, 1);
             }

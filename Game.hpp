@@ -12,19 +12,27 @@
 #include "Faction.hpp"
 #include "Terrain.hpp"
 #include "Point.hpp"
+#include "Mouse.hpp"
+#include "Size.hpp"
+#include "FogOfWar.hpp"
 
 class Game {
 public:
     Game();
-    Game(const Game& orig);
     ~Game();
     void render();
+    void tick();
+    void smallTick();
     void addUnit(Unit* unit);
     void removeUnit(Unit* unit);
-    Point camera;
+    void handleMouse(int, int, int, int);
+    void handleMouseMotion(int, int);
+    Size display;
+    Point camera; Mouse mouse;
     Faction* faction[2];
     Unit* unit[256];
     Terrain terrain;
+    FogOfWar fow;
 };
 
 #endif	/* GAME_HPP */
