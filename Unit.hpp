@@ -13,13 +13,18 @@
 class Game;
 class Unit {
 public:
+    Unit();
     Unit(double, double, double, int);
-    Unit(const Unit& orig);
     ~Unit();
     void render();
+    void renderInterface();
     void tick();
     void smallTick();
-    int faction;
+    void deploy();
+    int faction, hp, maxHp, target;
+    bool selected;
+    double tx, ty, px1, py1, px2, py2;
+    double turnSpeed, speed;
     double x, y, a, radius;
     Game *game = NULL;
 private:

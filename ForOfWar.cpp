@@ -25,6 +25,7 @@ FogOfWar::~FogOfWar() {
 }
 
 void FogOfWar::open(int radius, int x, int y) {
+    radius /= 20;
     for (int rx = x / 20 - radius; rx <= x / 20 + radius; rx++) {
         for (int ry = y / 20 - radius; ry <= y / 20 + radius; ry++) {
             if (rx < 0 || ry < 0 || rx >= 1024 || ry >= 1024)

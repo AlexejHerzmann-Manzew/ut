@@ -15,8 +15,10 @@ public:
     Terrain();
     Terrain(const Terrain& orig);
     unsigned short int getTerrain(int, int);
+    double speed(double, double);
     void setTerrain(unsigned short int, int, int);
     void render(double, double);
+    void digg(double, double, double);
     virtual ~Terrain();
 private:
     unsigned short int terrain[4096][4096];

@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Faction.o \
 	${OBJECTDIR}/ForOfWar.o \
 	${OBJECTDIR}/Game.o \
+	${OBJECTDIR}/Keyboard.o \
 	${OBJECTDIR}/Mouse.o \
 	${OBJECTDIR}/Point.o \
 	${OBJECTDIR}/Size.o \
@@ -91,6 +92,11 @@ ${OBJECTDIR}/Game.o: Game.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Game.o Game.cpp
+
+${OBJECTDIR}/Keyboard.o: Keyboard.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Keyboard.o Keyboard.cpp
 
 ${OBJECTDIR}/Mouse.o: Mouse.cpp 
 	${MKDIR} -p ${OBJECTDIR}

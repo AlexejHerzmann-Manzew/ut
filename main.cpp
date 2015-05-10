@@ -22,6 +22,7 @@ using namespace std;
 void setUpDisplay() {
     glClearColor(0.4, 0.8, 1.0, 1.0);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_MULTISAMPLE);
     glEnable(GL_TEXTURE_2D);
 }
 
@@ -63,6 +64,22 @@ void render() {
     }
 }
 
+void updateChar(unsigned char c, int x, int y) {
+    game.updateChar(c, x, y);
+}
+
+void updateSpecial(int c, int x, int y) {
+    game.updateSpecial(c, x, y);
+}
+
+void updateCharUp(unsigned char c, int x, int y) {
+    game.updateCharUp(c, x, y);
+}
+
+void updateSpecialUp(int c, int x, int y) {
+    game.updateSpecialUp(c, x, y);
+}
+
 void close() {
     glutDestroyWindow(0);
 }
@@ -90,6 +107,10 @@ int main(int argc, char** argv) {
     glutCloseFunc(close);
     glutMouseFunc(handleMouse);
     glutMotionFunc(handleMouseMotion);
+    glutKeyboardFunc(updateChar);
+    glutKeyboardUpFunc(updateCharUp);
+    glutSpecialFunc(updateSpecial);
+    glutSpecialUpFunc(updateSpecialUp);
     glutPassiveMotionFunc(handleMouseMotion);
     thread tickT(tickThread);
     tickT.detach();

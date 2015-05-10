@@ -11,7 +11,7 @@
 #include "Point.hpp"
 
 
-class Mouse : Point{
+class Mouse : public Point{
 public:
     Mouse();
     Mouse(const Mouse& orig);
