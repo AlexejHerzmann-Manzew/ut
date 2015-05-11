@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Bullet.o \
 	${OBJECTDIR}/Color.o \
 	${OBJECTDIR}/Faction.o \
 	${OBJECTDIR}/ForOfWar.o \
@@ -46,7 +47,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/Terrain.o \
 	${OBJECTDIR}/Texture.o \
 	${OBJECTDIR}/Unit.o \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/units/BattleDriller.o
 
 
 # C Compiler Flags
@@ -72,6 +74,11 @@ LDLIBSOPTIONS=-lglut -lGL -lGLU -pthread
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/training: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/training ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/Bullet.o: Bullet.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Bullet.o Bullet.cpp
 
 ${OBJECTDIR}/Color.o: Color.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -132,6 +139,11 @@ ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+
+${OBJECTDIR}/units/BattleDriller.o: units/BattleDriller.cpp 
+	${MKDIR} -p ${OBJECTDIR}/units
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/units/BattleDriller.o units/BattleDriller.cpp
 
 # Subprojects
 .build-subprojects:

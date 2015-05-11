@@ -23,23 +23,34 @@ Unit::Unit(double x, double y, double a, int faction) {
     this->y = y;
     this->a = 0;
     this->faction = faction;
+    init();
+}
+
+Unit::Unit() {
+    init();
+}
+
+Unit::~Unit() {
+}
+
+void Unit::init() {
     this->radius = 28;
     this->target = tx = ty = -1;
     this->turnSpeed = 0.05;
     this->speed = 3;
 }
 
-Unit::Unit() {
-
-}
-
-Unit::~Unit() {
-}
 
 void Unit::render() {
     double x = this->x, y = this->y, a = this->a;
     glTranslated(x, y, 0);
     glRotated(a / PI * 180, 0, 0, 1);
+    this->renderVirual();
+    glRotated(a / PI * 180, 0, 0, -1);
+    glTranslated(-x, -y, 0);
+}
+
+void Unit::renderVirual() {
     this->game->faction[faction]->color->bind();
     glBegin(GL_QUADS);
     {
@@ -56,8 +67,6 @@ void Unit::render() {
         glTexCoord2f(0, 1);
     }
     glEnd();
-    glRotated(a / PI * 180, 0, 0, -1);
-    glTranslated(-x, -y, 0);
 }
 
 void Unit::renderInterface() {
@@ -97,6 +106,7 @@ void Unit::renderInterface() {
         }
         glEnd();
     }
+    this->renderIntefaceVirtual();
     glTranslated(-x, -y, 0);
     if (this->selected) {
         if (this->tx != -1) {
@@ -163,6 +173,10 @@ void Unit::renderInterface() {
     }
 }
 
+void Unit::renderIntefaceVirtual() {
+}
+
+
 double abs(double a) {
     if (a >= 0)
         return a;
@@ -171,6 +185,8 @@ double abs(double a) {
 }
 
 void Unit::smallTick() {
+    this->smallTickVirtual();
+    
     for (int i = 0; i < 256; i++) {
         if (game->unit[i] != NULL) {
             double d = (sqrt(pow(game->unit[i]->x - x, 2) + pow(game->unit[i]->y - y, 2)) - (game->unit[i]->radius + radius)) / 2;
@@ -231,11 +247,22 @@ void Unit::smallTick() {
 
 }
 
+void Unit::smallTickVirtual() {
+
+}
+
+
 void Unit::tick() {
+    this->tickVirtual();
     if (this->faction == game->player) {
         this->game->fow.open(500, x, y);
     }
 }
+
+void Unit::tickVirtual() {
+
+}
+
 
 void Unit::deploy() {
     cout << "Unit deployed!" << endl;

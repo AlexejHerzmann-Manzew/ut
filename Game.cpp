@@ -18,6 +18,8 @@
 #include "Faction.hpp"
 #include "Keyboard.hpp"
 
+#include "units/BattleDriller.hpp"
+
 using namespace std;
 
 Game::Game() {
@@ -25,8 +27,8 @@ Game::Game() {
     display.height = 600;
     this->faction[0] = new Faction("Ruby", new Color(0.8f, 0.1f, 0.2f));
     this->faction[1] = new Faction("Lapis", new Color(0, 0.4f, 1));
-    for (int i = 0; i < 5; i++) {
-        addUnit(new Unit(1000, 850, 1, 0));
+    for (int i = 0; i < 16; i++) {
+        addUnit(new BattleDriller(1000, 850, 1, 0));
         addUnit(new Unit(2000, 851, 0.1, 1));
     }
 
@@ -76,25 +78,43 @@ void Game::handleMouse(int button, int state, int x, int y) {
                 }
             }
         }
-        int dx = camera.x + mouse.x, dy = camera.y + mouse.y, d = 0;
+        int dx = camera.x + mouse.x, dy = camera.y + mouse.y, d = 0, dm = 1, m = 1;
         for (int i = 0; i < 256; i++) {
             if (unit[i] != NULL && unit[i]->selected) {
                 if (keyboard.isButtonDownCode(GLUT_KEY_SHIFT_L) | keyboard.isButtonDownCode(GLUT_KEY_SHIFT_R)) {
-                    unit[i]->tx = unit[i]->px1 = camera.x + mouse.x;
-                    unit[i]->ty = unit[i]->py1 = camera.y + mouse.y;
+                    unit[i]->tx = unit[i]->px1 = dx;
+                    unit[i]->ty = unit[i]->py1 = dy;
                     unit[i]->px2 = unit[i]->x;
                     unit[i]->py2 = unit[i]->y;
                     unit[i]->target = -1;
                 } else {
-                    unit[i]->tx = camera.x + mouse.x;
-                    unit[i]->ty = camera.y + mouse.y;
+                    unit[i]->tx = dx;
+                    unit[i]->ty = dy;
                     unit[i]->px1 = unit[i]->px2 = -1;
                     unit[i]->py1 = unit[i]->py2 = -1;
                     unit[i]->target = -1;
                 }
-            }
-            switch (d){
-                
+                switch (d) {
+                    case 0:
+                        dx = dx - 2 * maxRadius;
+                        break;
+                    case 1:
+                        dy = dy - 2 * maxRadius;
+                        break;
+                    case 2:
+                        dx = dx + 2 * maxRadius;
+                        break;
+                    case 3:
+                        dy = dy + 2 * maxRadius;
+                        break;
+                }
+                dm--;
+                if (dm == 0) {
+                    if(d == 1 | d == 3)m++;
+                    dm = m;
+                    d++;
+                    if (d > 3)d = 0;
+                }
             }
         }
     }
