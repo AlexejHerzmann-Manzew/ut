@@ -65,15 +65,15 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lglut -lGL -lGLU -pthread
+LDLIBSOPTIONS=-lglut -lGL -lGLU -lIL -lILU -lILUT
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/training
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/underground_terror
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/training: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/underground_terror: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/training ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/underground_terror ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/Bullet.o: Bullet.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -151,7 +151,7 @@ ${OBJECTDIR}/units/BattleDriller.o: units/BattleDriller.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/training
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/underground_terror
 
 # Subprojects
 .clean-subprojects:

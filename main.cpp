@@ -12,6 +12,9 @@
 #include <GL/glu.h>
 #include <thread>
 #include <ctime>
+#include <IL/il.h>
+#include <IL/ilu.h>
+#include <IL/ilut.h>
 
 ////////////////////////////////////////////
 
@@ -24,6 +27,13 @@ void setUpDisplay() {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_MULTISAMPLE);
     glEnable(GL_TEXTURE_2D);
+    ilutRenderer(ILUT_OPENGL);
+    ilInit();
+    iluInit();
+    ilSetInteger(IL_KEEP_DXTC_DATA, IL_TRUE);
+    ilutEnable(ILUT_GL_AUTODETECT_TEXTURE_TARGET);
+    ilutEnable(ILUT_OPENGL_CONV);
+    ilutEnable(ILUT_GL_USE_S3TC);
 }
 
 int fps = 0;
@@ -41,7 +51,7 @@ void handleMouseMotion(int x, int y) {
 }
 
 void render() {
-    
+
     glViewport(0, 0, glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_PROJECTION);
@@ -52,7 +62,7 @@ void render() {
     game.render();
     glEnd();
     glFlush();
-    
+
     frame++;
     ttime = glutGet(GLUT_ELAPSED_TIME);
 

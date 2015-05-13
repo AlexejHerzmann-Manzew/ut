@@ -17,6 +17,8 @@
 
 using namespace std;
 
+Texture Terrain::dirt("res/dirt.png");
+
 Terrain::Terrain() {
     for (int x = 0; x < 4096; x++) {
         for (int y = 0; y < 4096; y++) {

@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Training
+PROJECTNAME=Underground Terror
 
 # Active Configuration
 DEFAULTCONF=Debug

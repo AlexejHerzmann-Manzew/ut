@@ -255,7 +255,7 @@ void Unit::smallTickVirtual() {
 void Unit::tick() {
     this->tickVirtual();
     if (this->faction == game->player) {
-        this->game->fow.open(500, x, y);
+        this->game->fow.open(150, x, y);
     }
 }
 

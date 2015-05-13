@@ -16,6 +16,7 @@
 #include "Size.hpp"
 #include "FogOfWar.hpp"
 #include "Keyboard.hpp"
+#include "Texture.hpp"
 
 class Game {
 public:
@@ -43,6 +44,8 @@ public:
     Terrain terrain;
     FogOfWar fow;
     int player;
+private:
+    static Texture grass;
 };
 
 #endif	/* GAME_HPP */

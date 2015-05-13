@@ -6,6 +6,7 @@
  */
 
 #include "Point.hpp"
+#include "Texture.hpp"
 
 #ifndef TERRAIN_HPP
 #define	TERRAIN_HPP
@@ -22,6 +23,7 @@ public:
     virtual ~Terrain();
 private:
     unsigned short int terrain[4096][4096];
+    static Texture dirt;
 };
 
 #endif	/* TERRAIN_HPP */

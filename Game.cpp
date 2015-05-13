@@ -12,6 +12,7 @@
 #include <GL/glu.h>
 #include <iostream>
 #include <string>
+#include <functional>
 
 #include "Game.hpp"
 #include "Unit.hpp"
@@ -22,14 +23,16 @@
 
 using namespace std;
 
+Texture Game::grass("res/grass.png");
+
 Game::Game() {
     display.width = 800;
     display.height = 600;
-    this->faction[0] = new Faction("Ruby", new Color(0.8f, 0.1f, 0.2f));
+    this->faction[0] = new Faction("Ruby", new Color(1.0f, 0.1f, 0.0f));
     this->faction[1] = new Faction("Lapis", new Color(0, 0.4f, 1));
     for (int i = 0; i < 16; i++) {
         addUnit(new BattleDriller(1000, 850, 1, 0));
-        addUnit(new Unit(2000, 851, 0.1, 1));
+        addUnit(new BattleDriller(2000, 851, 0.1, 1));
     }
 
 }
@@ -110,7 +113,7 @@ void Game::handleMouse(int button, int state, int x, int y) {
                 }
                 dm--;
                 if (dm == 0) {
-                    if(d == 1 | d == 3)m++;
+                    if (d == 1 | d == 3)m++;
                     dm = m;
                     d++;
                     if (d > 3)d = 0;
@@ -198,8 +201,33 @@ void Game::render() {
         if (this->unit[i] != NULL) {
             this->unit[i]->render();
         }
+        glLoadIdentity();
+        glTranslated(-dcamera.x, -dcamera.y, 0);
     }
-    this->fow.render(camera.x, camera.y);
+    glLoadIdentity();
+    glTranslated(-dcamera.x, -dcamera.y, 0);
+    this->fow.render(dcamera.x, dcamera.y);
+    glEnable(GL_BLEND);
+    if (camera.y < 5) {
+        glColor3f(1, 1, 1);
+        grass.bind();
+        glBegin(GL_QUADS);
+        for (int x = camera.x / 64 - 1; x <= (camera.x + display.width) / 64 + 1; x++) {
+            glVertex2f(x * 64, 20);
+            glTexCoord2f(0, 0);
+
+            glVertex2f(x * 64, -44);
+            glTexCoord2f(1, 0);
+
+            glVertex2f((x + 1)*64, -44);
+            glTexCoord2f(1, 1);
+
+            glVertex2f((x + 1)*64, 20);
+            glTexCoord2f(0, 1);
+        }
+        glEnd();
+        grass.unbind();
+    }
     for (int i = 0; i < 256; i++) {
         if (this->unit[i] != NULL) {
             this->unit[i]->renderInterface();

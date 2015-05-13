@@ -6,20 +6,25 @@
  */
 
 #include <string>
+#include <vector>
+#include <GL/gl.h>
+#include <IL/il.h>
 
 #ifndef TEXTURE_HPP
 #define	TEXTURE_HPP
 
+
 class Texture {
 public:
-    Texture();
-    Texture(std::string);
-    Texture(const Texture& orig);
+    static void unbind();
     void bind();
-    virtual ~Texture();
+    Texture(std::string);
+    ~Texture();
+    std::string name;
+    int width, height;
 private:
-    std::string path;
-    int texture;
+    static unsigned int nextTextureIndex;
+    ILuint texture;
 };
 
 #endif	/* TEXTURE_HPP */

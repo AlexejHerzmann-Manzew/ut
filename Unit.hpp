@@ -6,6 +6,7 @@
  */
 
 #include "Game.hpp"
+#include "Texture.hpp"
 
 #ifndef UNIT_HPP
 #define	UNIT_HPP

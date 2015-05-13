@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux-x86
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux-x86
-CND_ARTIFACT_NAME_Debug=training
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/training
+CND_ARTIFACT_NAME_Debug=underground_terror
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/underground_terror
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Debug=training.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/training.tar
+CND_PACKAGE_NAME_Debug=undergroundterror.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/undergroundterror.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux-x86
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
-CND_ARTIFACT_NAME_Release=training
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/training
+CND_ARTIFACT_NAME_Release=underground_terror
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/underground_terror
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Release=training.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/training.tar
+CND_PACKAGE_NAME_Release=undergroundterror.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/undergroundterror.tar
 #
 # include compiler specific variables
 #

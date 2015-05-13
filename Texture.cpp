@@ -5,33 +5,72 @@
  * Created on May 6, 2015, 10:29 PM
  */
 
+#include <IL/il.h>
+#include <IL/ilu.h>
 #include <GL/gl.h>
-#include <string>
+#include <GL/glu.h>
+#include <iostream>
 
 #include "Texture.hpp"
 
 using namespace std;
 
-static int textureIndex = 0;
-
-Texture::Texture() {
-    this->texture = -1;
-}
-
-Texture::Texture(string path) {
-    this->path = path;
-    this->texture = -1;
-}
+unsigned int Texture::nextTextureIndex = 1;
 
 void Texture::bind() {
-    if (this->texture == -1) {
+    if (texture == 100500) {
+        texture = nextTextureIndex;
+        nextTextureIndex++;
+        bool b = ilLoadImage(name.c_str());
+        int err = ilGetError();
+        if (err != IL_NO_ERROR) {
+            cerr << "Texture loading error! [" << err << "]" << endl;
+            cerr << iluErrorString(err) << endl;
+            texture = 228500;
+            return;
+        }
+        glGenTextures(1, &texture);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        width = ilGetInteger(IL_IMAGE_WIDTH);
+        height = ilGetInteger(IL_IMAGE_HEIGHT);
+        cout << ilGetInteger(IL_IMAGE_FORMAT) << endl;
+        cout << ilGetInteger(IL_IMAGE_TYPE) << endl;
+        cout << width << ":" << height << endl;
+        unsigned int type;
+        switch (ilGetInteger(IL_IMAGE_BYTES_PER_PIXEL)) {
+            case 1:
+                type = GL_RGB8;
+                break;
+            case 3:
+                type = GL_RGB;
+                break;
+            case 4:
+                type = GL_RGBA;
+                break;
+        }
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, width, height, type,
+                GL_UNSIGNED_BYTE, ilGetData());
+    } else if (texture == 228500) {
+        glBindTexture(GL_TEXTURE_2D, 0);
+        return;
+    } else {
+        glBindTexture(GL_TEXTURE_2D, texture);
     }
-    glBindTexture(GL_TEXTURE_2D, this->texture);
 }
 
-Texture::Texture(const Texture& orig) {
+void Texture::unbind() {
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+Texture::Texture(std::string n) {
+    name = n;
+    texture = 100500;
 }
 
 Texture::~Texture() {
-}
 
+}

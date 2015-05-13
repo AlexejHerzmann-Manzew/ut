@@ -6,6 +6,7 @@
  */
 
 #include "../Unit.hpp"
+#include "../Texture.hpp"
 
 #ifndef BATTLEDRILLER_HPP
 #define	BATTLEDRILLER_HPP
@@ -18,7 +19,6 @@ public:
     
     virtual void init();
 
-
     virtual void renderIntefaceVirtual();
 
     virtual void renderVirual();
@@ -29,7 +29,9 @@ public:
     
     virtual ~BattleDriller();
 private:
-
+    static Texture texture;
+    static Texture texture_team;
+    static Texture texture_turret;
 };
 
 #endif	/* BATTLEDRILLER_HPP */

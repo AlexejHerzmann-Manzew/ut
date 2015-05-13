@@ -9,10 +9,15 @@
 #include <math.h>
 
 #include "BattleDriller.hpp"
+#include "../Texture.hpp"
+
+Texture BattleDriller::texture("res/driller_standing.png");
+Texture BattleDriller::texture_team("res/driller_team.png");
+Texture BattleDriller::texture_turret("res/driller_turret.png");
 
 void BattleDriller::init() {
     this->tx = this->ty = -1;
-    this->radius = 20;
+    this->radius = 40;
     this->turnSpeed = 0.08;
     this->speed = 6;
     this->range = 350;
@@ -31,22 +36,68 @@ BattleDriller::~BattleDriller() {
 }
 
 void BattleDriller::renderVirual() {
-    this->game->faction[faction]->color->bind();
+    glColor3f(1, 1, 1);
+    texture.bind();
     glBegin(GL_QUADS);
     {
-        glVertex2f(-radius, -radius);
+        int linesize = 64;
+        glVertex2f(-linesize, linesize);
         glTexCoord2f(0, 0);
 
-        glVertex2f(radius, -radius);
+        glVertex2f(-linesize, -linesize);
         glTexCoord2f(1, 0);
 
-        glVertex2f(radius, radius);
+        glVertex2f(linesize, -linesize);
         glTexCoord2f(1, 1);
 
-        glVertex2f(-radius, radius);
+        glVertex2f(linesize, linesize);
         glTexCoord2f(0, 1);
     }
     glEnd();
+    texture.unbind();
+    this->game->faction[faction]->color->bind();
+    texture_team.bind();
+    glBegin(GL_QUADS);
+    {
+        int linesize = 64;
+        glVertex2f(-linesize, linesize);
+        glTexCoord2f(0, 0);
+
+        glVertex2f(-linesize, -linesize);
+        glTexCoord2f(1, 0);
+
+        glVertex2f(linesize, -linesize);
+        glTexCoord2f(1, 1);
+
+        glVertex2f(linesize, linesize);
+        glTexCoord2f(0, 1);
+    }
+    glEnd();
+    texture_team.unbind();
+    if (target != -1) {
+        double a = atan2(game->unit[target]->y - y, game->unit[target]->x - x);
+        glRotated((a - this->a) / 3.1415 * 180, 0, 0, 1);
+        glColor3f(1, 1, 1);
+        texture_turret.bind();
+        glBegin(GL_QUADS);
+        {
+            int linesize = 32;
+            glVertex2f(-linesize, linesize);
+            glTexCoord2f(0, 0);
+
+            glVertex2f(-linesize, -linesize);
+            glTexCoord2f(1, 0);
+
+            glVertex2f(linesize, -linesize);
+            glTexCoord2f(1, 1);
+
+            glVertex2f(linesize, linesize);
+            glTexCoord2f(0, 1);
+        }
+        glEnd();
+        texture_turret.unbind();
+        glRotated((a - this->a) / 3.1415 * 180, 0, 0, -1);
+    }
 }
 
 void BattleDriller::renderIntefaceVirtual() {
@@ -64,7 +115,7 @@ void BattleDriller::smallTickVirtual() {
             tx = game->unit[target]->x - cos(a) * range * 0.9;
             ty = game->unit[target]->y - sin(a) * range * 0.9;
         } else {
-            
+
         }
     } else {
         target = -1;
