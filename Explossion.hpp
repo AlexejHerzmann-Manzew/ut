@@ -10,8 +10,12 @@
 
 class Explossion {
 public:
+    double x, y, a, size;
     Explossion();
+    Explossion(double, double, double);
     Explossion(const Explossion& orig);
+    void tick();
+    void render();
     virtual ~Explossion();
 private:
 
