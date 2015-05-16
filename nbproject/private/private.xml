@@ -7,7 +7,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/Texture.cpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/Game.hpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/res/torpedo.png</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/Unit.hpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/units/Builder.cpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/units/Torpedo.hpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/units/BattleDriller.cpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/Game.cpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/units/Torpedo.cpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/Keyboard.hpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/Unit.cpp</file>
         </group>
     </open-files>
 </project-private>

@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Bullet.o \
 	${OBJECTDIR}/Color.o \
+	${OBJECTDIR}/Explossion.o \
 	${OBJECTDIR}/Faction.o \
 	${OBJECTDIR}/ForOfWar.o \
 	${OBJECTDIR}/Game.o \
@@ -48,7 +49,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/Texture.o \
 	${OBJECTDIR}/Unit.o \
 	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/units/BattleDriller.o
+	${OBJECTDIR}/units/BattleDriller.o \
+	${OBJECTDIR}/units/Builder.o \
+	${OBJECTDIR}/units/Torpedo.o
 
 
 # C Compiler Flags
@@ -84,6 +87,11 @@ ${OBJECTDIR}/Color.o: Color.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Color.o Color.cpp
+
+${OBJECTDIR}/Explossion.o: Explossion.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Explossion.o Explossion.cpp
 
 ${OBJECTDIR}/Faction.o: Faction.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -144,6 +152,16 @@ ${OBJECTDIR}/units/BattleDriller.o: units/BattleDriller.cpp
 	${MKDIR} -p ${OBJECTDIR}/units
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/units/BattleDriller.o units/BattleDriller.cpp
+
+${OBJECTDIR}/units/Builder.o: units/Builder.cpp 
+	${MKDIR} -p ${OBJECTDIR}/units
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/units/Builder.o units/Builder.cpp
+
+${OBJECTDIR}/units/Torpedo.o: units/Torpedo.cpp 
+	${MKDIR} -p ${OBJECTDIR}/units
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/units/Torpedo.o units/Torpedo.cpp
 
 # Subprojects
 .build-subprojects:

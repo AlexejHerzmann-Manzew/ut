@@ -20,6 +20,7 @@
 #include "Keyboard.hpp"
 
 #include "units/BattleDriller.hpp"
+#include "units/Builder.hpp"
 
 using namespace std;
 
@@ -34,7 +35,7 @@ Game::Game() {
         addUnit(new BattleDriller(1000, 850, 1, 0));
         addUnit(new BattleDriller(2000, 851, 0.1, 1));
     }
-
+    addUnit(new Builder(2000, 851, 0.1, 0));
 }
 
 void Game::updateChar(unsigned char c, int x, int y) {
@@ -73,8 +74,10 @@ void Game::handleMouse(int button, int state, int x, int y) {
                         unit[i]->deploy();
                     else if (unit[i]->faction != player | (keyboard.isButtonDownCode(GLUT_KEY_CTRL_L) | keyboard.isButtonDownCode(GLUT_KEY_CTRL_R))) {
                         for (int j = 0; j < 256; j++) {
-                            if (unit[j] != NULL && unit[j]->selected)
+                            if (unit[j] != NULL && unit[j]->selected && unit[j]->range != -1){
                                 unit[j]->target = i;
+                                unit[j]->forcedAttack = true;
+                            }
                         }
                     }
                     return;
@@ -90,12 +93,14 @@ void Game::handleMouse(int button, int state, int x, int y) {
                     unit[i]->px2 = unit[i]->x;
                     unit[i]->py2 = unit[i]->y;
                     unit[i]->target = -1;
+                    unit[i]->forcedAttack = false;
                 } else {
                     unit[i]->tx = dx;
                     unit[i]->ty = dy;
                     unit[i]->px1 = unit[i]->px2 = -1;
                     unit[i]->py1 = unit[i]->py2 = -1;
                     unit[i]->target = -1;
+                    unit[i]->forcedAttack = false;
                 }
                 switch (d) {
                     case 0:
@@ -181,32 +186,40 @@ void Game::render() {
         if (select) {
             select = false;
             for (int i = 0; i < 256; i++) {
-                if (unit[i] != NULL && unit[i]->faction == this->player &&
-                        unit[i]->x <= max(p1.x, p2.x) + unit[i]->radius &
-                        unit[i]->y <= max(p1.y, p2.y) + unit[i]->radius &
-                        unit[i]->x >= min(p1.x, p2.x) - unit[i]->radius &
-                        unit[i]->y >= min(p1.y, p2.y) - unit[i]->radius
-                        ) {
-                    unit[i]->selected = true;
-                } else if (unit[i] != NULL && !(keyboard.isButtonDownCode(GLUT_KEY_SHIFT_R) | keyboard.isButtonDownCode(GLUT_KEY_SHIFT_L))) {
-                    unit[i]->selected = false;
+                try {
+                    if (unit[i] != NULL && unit[i]->faction == this->player &&
+                            unit[i]->x <= max(p1.x, p2.x) + unit[i]->radius &
+                            unit[i]->y <= max(p1.y, p2.y) + unit[i]->radius &
+                            unit[i]->x >= min(p1.x, p2.x) - unit[i]->radius &
+                            unit[i]->y >= min(p1.y, p2.y) - unit[i]->radius
+                            ) {
+                        unit[i]->selected = true;
+                    } else if (unit[i] != NULL && !(keyboard.isButtonDownCode(GLUT_KEY_SHIFT_R) | keyboard.isButtonDownCode(GLUT_KEY_SHIFT_L))) {
+                        unit[i]->selected = false;
+                    }
+                } catch (const exception &e) {
+
                 }
             }
         }
     }
-    glTranslated(-dcamera.x, -dcamera.y, 0);
-    this->terrain.render(dcamera.x, dcamera.y);
+    glTranslated(-camera.x, -camera.y, 0);
+    this->terrain.render(camera.x, camera.y);
     glEnable(GL_BLEND);
     for (int i = 0; i < 256; i++) {
         if (this->unit[i] != NULL) {
-            this->unit[i]->render();
+            try {
+                this->unit[i]->render();
+            } catch (const exception &e) {
+
+            }
         }
         glLoadIdentity();
-        glTranslated(-dcamera.x, -dcamera.y, 0);
+        glTranslated(-camera.x, -camera.y, 0);
     }
     glLoadIdentity();
-    glTranslated(-dcamera.x, -dcamera.y, 0);
-    this->fow.render(dcamera.x, dcamera.y);
+    glTranslated(-camera.x, -camera.y, 0);
+    this->fow.render(camera.x, camera.y);
     glEnable(GL_BLEND);
     if (camera.y < 5) {
         glColor3f(1, 1, 1);
@@ -266,10 +279,10 @@ void Game::render() {
 }
 
 void Game::smallTick() {
-    if (mouse.x < 50)dcamera.x -= 5;
-    if (mouse.y < 50)dcamera.y -= 5;
-    if (mouse.x > display.width - 50)dcamera.x += 5;
-    if (mouse.y > display.height - 50)dcamera.y += 5;
+    if (mouse.x < 50 | keyboard.isButtonDownCode(GLUT_KEY_LEFT))dcamera.x -= 5;
+    if (mouse.y < 50 | keyboard.isButtonDownCode(GLUT_KEY_UP))dcamera.y -= 5;
+    if (mouse.x > display.width - 50 | keyboard.isButtonDownCode(GLUT_KEY_RIGHT))dcamera.x += 5;
+    if (mouse.y > display.height - 50 | keyboard.isButtonDownCode(GLUT_KEY_DOWN))dcamera.y += 5;
 
 
     if (dcamera.x < 0)
@@ -284,16 +297,23 @@ void Game::smallTick() {
 
     for (int i = 0; i < 256; i++) {
         if (this->unit[i] != NULL) {
-            this->unit[i]->smallTick();
+            try {
+                this->unit[i]->smallTick();
+            } catch (const exception &e) {
+
+            }
         }
     }
 }
 
 void Game::tick() {
-
     for (int i = 0; i < 256; i++) {
         if (this->unit[i] != NULL) {
-            this->unit[i]->tick();
+            try {
+                this->unit[i]->tick();
+            } catch (const exception &e) {
+
+            }
         }
     }
     this->fow.update();
@@ -318,4 +338,3 @@ void Game::removeUnit(Unit* unit) {
         }
     }
 }
-

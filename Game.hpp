@@ -41,6 +41,7 @@ public:
     Point p1, p2; bool select;
     Faction* faction[2];
     Unit* unit[256];
+    Unit* unitRemoveQueue[256];
     Terrain terrain;
     FogOfWar fow;
     int player;

@@ -18,6 +18,8 @@ using namespace std;
 
 const double PI = 3.14159265;
 
+Texture Unit::destroyed("res/destroyed.png");
+
 Unit::Unit(double x, double y, double a, int faction) {
     this->x = x;
     this->y = y;
@@ -38,10 +40,35 @@ void Unit::init() {
     this->target = tx = ty = -1;
     this->turnSpeed = 0.05;
     this->speed = 3;
+    this->hp = this->maxHp = 100;
 }
 
-
 void Unit::render() {
+    if (hp == 0) {
+        glTranslated(x, y, 0);
+        glRotated(a / PI * 180, 0, 0, 1);
+        glColor4f(1, 1, 1, (1000.0f - (float) removeTimer) / 1000.0f);
+        destroyed.bind();
+        glBegin(GL_QUADS);
+        {
+            glVertex2f(-radius * 2, -radius * 2);
+            glTexCoord2f(0, 0);
+
+            glVertex2f(radius * 2, -radius * 2);
+            glTexCoord2f(1, 0);
+
+            glVertex2f(radius * 2, radius * 2);
+            glTexCoord2f(1, 1);
+
+            glVertex2f(-radius * 2, radius * 2);
+            glTexCoord2f(0, 1);
+        }
+        glEnd();
+        destroyed.unbind();
+        glRotated(a / PI * 180, 0, 0, -1);
+        glTranslated(-x, -y, 0);
+        return;
+    }
     double x = this->x, y = this->y, a = this->a;
     glTranslated(x, y, 0);
     glRotated(a / PI * 180, 0, 0, 1);
@@ -70,8 +97,25 @@ void Unit::renderVirual() {
 }
 
 void Unit::renderInterface() {
+    if (hp == 0) {
+        return;
+    }
     double x = this->x, y = this->y, a = this->a;
     glTranslated(x, y, 0);
+    if (hp < maxHp && hp > 0) {
+        if (hp > maxHp / 4)
+            glColor3f(0, 1, 0);
+        else
+            glColor3f(1, 0, 0);
+        glBegin(GL_POLYGON);
+        {
+            glVertex2f(-radius, -radius - 2);
+            glVertex2f(-radius + (2 * radius * ((float) hp / (float) maxHp)), -radius - 2);
+            glVertex2f(-radius + (2 * radius * ((float) hp / (float) maxHp)), -radius - 5);
+            glVertex2f(-radius, -radius - 5);
+        }
+        glEnd();
+    }
     if (this->selected) {
         glColor3f(1, 1, 1);
         glBegin(GL_LINES);
@@ -176,6 +220,13 @@ void Unit::renderInterface() {
 void Unit::renderIntefaceVirtual() {
 }
 
+void Unit::hit(int damage) {
+    if (damage > hp) {
+        hp = 0;
+    } else {
+        hp -= damage;
+    }
+}
 
 double abs(double a) {
     if (a >= 0)
@@ -185,21 +236,26 @@ double abs(double a) {
 }
 
 void Unit::smallTick() {
+    if (hp == 0) {
+        phantom = true;
+        untargetable = true;
+        return;
+    }
     this->smallTickVirtual();
-    
-    for (int i = 0; i < 256; i++) {
-        if (game->unit[i] != NULL) {
-            double d = (sqrt(pow(game->unit[i]->x - x, 2) + pow(game->unit[i]->y - y, 2)) - (game->unit[i]->radius + radius)) / 2;
-            if (d < 0) {
-                double a = atan2(game->unit[i]->y - y, game->unit[i]->x - x);
-                game->unit[i]->x -= cos(a) * d;
-                game->unit[i]->y -= sin(a) * d;
+    if (!phantom)
+        for (int i = 0; i < 256; i++) {
+            if (game->unit[i] != NULL && !game->unit[i]->phantom) {
+                double d = (sqrt(pow(game->unit[i]->x - x, 2) + pow(game->unit[i]->y - y, 2)) - (game->unit[i]->radius + radius)) / 2;
+                if (d < 0) {
+                    double a = atan2(game->unit[i]->y - y, game->unit[i]->x - x);
+                    game->unit[i]->x -= cos(a) * d;
+                    game->unit[i]->y -= sin(a) * d;
 
-                x += cos(a) * d;
-                y += sin(a) * d;
+                    x += cos(a) * d;
+                    y += sin(a) * d;
+                }
             }
         }
-    }
 
     if (tx != -1 & ty != -1) {
         if (abs(px1 - x) + abs(py1 - y) < radius) {
@@ -251,8 +307,19 @@ void Unit::smallTickVirtual() {
 
 }
 
-
 void Unit::tick() {
+    if (hp == 0) {
+        if (removeTimer < 5) {
+            for (int i = 1; i <= 10; i++) {
+                game->fow.open(i * 30 / (removeTimer + 1), x, y);
+            }
+        }
+        removeTimer++;
+        if (removeTimer == 1000) {
+            game->removeUnit(this);
+        }
+        return;
+    }
     this->tickVirtual();
     if (this->faction == game->player) {
         this->game->fow.open(150, x, y);
@@ -262,7 +329,6 @@ void Unit::tick() {
 void Unit::tickVirtual() {
 
 }
-
 
 void Unit::deploy() {
     cout << "Unit deployed!" << endl;

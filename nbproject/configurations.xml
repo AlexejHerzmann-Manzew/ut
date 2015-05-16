@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>Bullet.hpp</itemPath>
       <itemPath>Color.hpp</itemPath>
+      <itemPath>Explossion.hpp</itemPath>
       <itemPath>Faction.hpp</itemPath>
       <itemPath>FogOfWar.hpp</itemPath>
       <itemPath>Game.hpp</itemPath>
@@ -27,6 +28,7 @@
                    projectFiles="true">
       <itemPath>Bullet.cpp</itemPath>
       <itemPath>Color.cpp</itemPath>
+      <itemPath>Explossion.cpp</itemPath>
       <itemPath>Faction.cpp</itemPath>
       <itemPath>ForOfWar.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
@@ -41,9 +43,13 @@
     </logicalFolder>
     <logicalFolder name="f1" displayName="Unit Headers" projectFiles="true">
       <itemPath>units/BattleDriller.hpp</itemPath>
+      <itemPath>units/Builder.hpp</itemPath>
+      <itemPath>units/Torpedo.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="f2" displayName="Unit Source Files" projectFiles="true">
       <itemPath>units/BattleDriller.cpp</itemPath>
+      <itemPath>units/Builder.cpp</itemPath>
+      <itemPath>units/Torpedo.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -92,6 +98,10 @@
       </item>
       <item path="Color.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Explossion.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Explossion.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Faction.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Faction.hpp" ex="false" tool="3" flavor2="0">
@@ -139,6 +149,14 @@
       <item path="units/BattleDriller.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="units/BattleDriller.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="units/Builder.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="units/Builder.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="units/Torpedo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="units/Torpedo.hpp" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -171,6 +189,10 @@
       </item>
       <item path="Color.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Explossion.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Explossion.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Faction.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Faction.hpp" ex="false" tool="3" flavor2="0">
@@ -218,6 +240,14 @@
       <item path="units/BattleDriller.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="units/BattleDriller.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="units/Builder.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="units/Builder.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="units/Torpedo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="units/Torpedo.hpp" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
