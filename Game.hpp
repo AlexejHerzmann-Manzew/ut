@@ -17,6 +17,7 @@
 #include "FogOfWar.hpp"
 #include "Keyboard.hpp"
 #include "Texture.hpp"
+#include "Explossion.hpp"
 
 class Game {
 public:
@@ -26,6 +27,7 @@ public:
     void tick();
     void smallTick();
     void addUnit(Unit* unit);
+    void addExplossion(Explossion* explossion);
     void updateChar(unsigned char, int, int);
     void updateCharUp(unsigned char, int, int);
     void updateSpecial(int, int, int);
@@ -41,7 +43,7 @@ public:
     Point p1, p2; bool select;
     Faction* faction[2];
     Unit* unit[256];
-    Unit* unitRemoveQueue[256];
+    Explossion* explossion[64];
     Terrain terrain;
     FogOfWar fow;
     int player;

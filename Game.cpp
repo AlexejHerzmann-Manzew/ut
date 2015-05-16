@@ -74,7 +74,7 @@ void Game::handleMouse(int button, int state, int x, int y) {
                         unit[i]->deploy();
                     else if (unit[i]->faction != player | (keyboard.isButtonDownCode(GLUT_KEY_CTRL_L) | keyboard.isButtonDownCode(GLUT_KEY_CTRL_R))) {
                         for (int j = 0; j < 256; j++) {
-                            if (unit[j] != NULL && unit[j]->selected && unit[j]->range != -1){
+                            if (unit[j] != NULL && unit[j]->selected && unit[j]->range != -1) {
                                 unit[j]->target = i;
                                 unit[j]->forcedAttack = true;
                             }
@@ -217,9 +217,18 @@ void Game::render() {
         glLoadIdentity();
         glTranslated(-camera.x, -camera.y, 0);
     }
-    glLoadIdentity();
-    glTranslated(-camera.x, -camera.y, 0);
     this->fow.render(camera.x, camera.y);
+    for (int i = 0; i < 64; i++) {
+        if (this->explossion[i] != NULL) {
+            this->explossion[i]->render();
+            if(this->explossion[i]->t >= 30){
+                this->explossion[i]->~Explossion();
+                this->explossion[i] = NULL;
+            }
+        }
+        glLoadIdentity();
+        glTranslated(-camera.x, -camera.y, 0);
+    }
     glEnable(GL_BLEND);
     if (camera.y < 5) {
         glColor3f(1, 1, 1);
@@ -303,6 +312,9 @@ void Game::smallTick() {
 
             }
         }
+        if (i < 64 & this->explossion[i] != NULL) {
+            this->explossion[i]->tick();
+        }
     }
 }
 
@@ -324,6 +336,15 @@ void Game::addUnit(Unit* unit) {
         if (this->unit[i] == NULL) {
             this->unit[i] = unit;
             unit->game = this;
+            return;
+        }
+    }
+}
+
+void Game::addExplossion(Explossion* explossion) {
+    for (int i = 0; i < 64; i++) {
+        if (this->explossion[i] == NULL) {
+            this->explossion[i] = explossion;
             return;
         }
     }

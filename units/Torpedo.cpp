@@ -80,6 +80,7 @@ void Torpedo::smallTickVirtual() {
                 game->fow.open(i * 50, x, y);
             }
             game->unit[target]->hit(10);
+            game->addExplossion(new Explossion(50, x, y));
             game->removeUnit(this);
         }
         this->tx = game->unit[target]->x;
@@ -87,6 +88,7 @@ void Torpedo::smallTickVirtual() {
         this->a = atan2(ty - y, tx - x);
     } else {
         game->removeUnit(this);
+        game->addExplossion(new Explossion(25, x, y));
         for (int i = 1; i <= 5; i++) {
             game->fow.open(i * 50, x, y);
         }

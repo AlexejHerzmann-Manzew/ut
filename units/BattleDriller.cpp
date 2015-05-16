@@ -129,9 +129,14 @@ void BattleDriller::smallTickVirtual() {
         }
     } else {
         target = -1;
-        if (px1 != -1) {
-            tx = px1;
-            ty = py1;
+        if (px1 != -1 & (tx != px1 & tx != px2)) {
+            if (sqrt(pow(px1 - x, 2) + pow(py1 - y, 2)) < sqrt(pow(px2 - x, 2) + pow(py2 - y, 2))) {
+                tx = px2;
+                ty = py2;
+            } else {
+                tx = px1;
+                ty = py1;
+            }
         }
         if (tx == -1 | px1 != -1) {
             for (int i = 0; i < 256; i++) {

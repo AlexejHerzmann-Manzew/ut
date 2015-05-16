@@ -103,6 +103,15 @@ void Unit::renderInterface() {
     double x = this->x, y = this->y, a = this->a;
     glTranslated(x, y, 0);
     if (hp < maxHp && hp > 0) {
+        glColor4f(0, 0, 0, 0.2f);
+        glBegin(GL_POLYGON);
+        {
+            glVertex2f(-radius - 1, -radius - 1);
+            glVertex2f(radius + 1, -radius - 1);
+            glVertex2f(radius + 1, -radius - 6);
+            glVertex2f(-radius - 1, -radius - 6);
+        }
+        glEnd();
         if (hp > maxHp / 4)
             glColor3f(0, 1, 0);
         else
@@ -309,6 +318,9 @@ void Unit::smallTickVirtual() {
 
 void Unit::tick() {
     if (hp == 0) {
+        if (removeTimer == 0){
+            game->addExplossion(new Explossion(radius * 2, x, y));
+        }
         if (removeTimer < 5) {
             for (int i = 1; i <= 10; i++) {
                 game->fow.open(i * 30 / (removeTimer + 1), x, y);
