@@ -6,11 +6,14 @@
                    projectFiles="true">
       <itemPath>Bullet.hpp</itemPath>
       <itemPath>Color.hpp</itemPath>
+      <itemPath>gui/Container.hpp</itemPath>
+      <itemPath>gui/Element.hpp</itemPath>
       <itemPath>Explossion.hpp</itemPath>
       <itemPath>Faction.hpp</itemPath>
       <itemPath>FogOfWar.hpp</itemPath>
       <itemPath>Game.hpp</itemPath>
       <itemPath>Keyboard.hpp</itemPath>
+      <itemPath>Math.hpp</itemPath>
       <itemPath>Mouse.hpp</itemPath>
       <itemPath>Point.hpp</itemPath>
       <itemPath>Size.hpp</itemPath>
@@ -28,11 +31,14 @@
                    projectFiles="true">
       <itemPath>Bullet.cpp</itemPath>
       <itemPath>Color.cpp</itemPath>
+      <itemPath>gui/Container.cpp</itemPath>
+      <itemPath>gui/Element.cpp</itemPath>
       <itemPath>Explossion.cpp</itemPath>
       <itemPath>Faction.cpp</itemPath>
       <itemPath>ForOfWar.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
       <itemPath>Keyboard.cpp</itemPath>
+      <itemPath>Math.cpp</itemPath>
       <itemPath>Mouse.cpp</itemPath>
       <itemPath>Point.cpp</itemPath>
       <itemPath>Size.cpp</itemPath>
@@ -118,6 +124,10 @@
       </item>
       <item path="Keyboard.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Math.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Math.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Mouse.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Mouse.hpp" ex="false" tool="3" flavor2="0">
@@ -141,6 +151,14 @@
       <item path="Unit.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Unit.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gui/Container.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gui/Container.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gui/Element.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gui/Element.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -209,6 +227,10 @@
       </item>
       <item path="Keyboard.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Math.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Math.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Mouse.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Mouse.hpp" ex="false" tool="3" flavor2="0">
@@ -232,6 +254,14 @@
       <item path="Unit.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Unit.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gui/Container.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gui/Container.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gui/Element.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gui/Element.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -13,6 +13,7 @@
 
 #include "Unit.hpp"
 #include "Game.hpp"
+#include "Math.hpp"
 
 using namespace std;
 
@@ -236,13 +237,6 @@ void Unit::hit(int damage) {
     } else {
         hp -= damage;
     }
-}
-
-double abs(double a) {
-    if (a >= 0)
-        return a;
-    else
-        return -a;
 }
 
 void Unit::smallTick() {

@@ -18,6 +18,7 @@
 #include "Unit.hpp"
 #include "Faction.hpp"
 #include "Keyboard.hpp"
+#include "Math.hpp"
 
 #include "units/BattleDriller.hpp"
 #include "units/Builder.hpp"
@@ -150,22 +151,6 @@ Game::~Game() {
         if (this->unit[i] != NULL) {
             this->unit[i]->~Unit();
         }
-    }
-}
-
-double max(double a, double b) {
-    if (a > b) {
-        return a;
-    } else {
-        return b;
-    }
-}
-
-double min(double a, double b) {
-    if (a < b) {
-        return a;
-    } else {
-        return b;
     }
 }
 

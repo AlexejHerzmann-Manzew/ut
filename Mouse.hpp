@@ -19,6 +19,8 @@ public:
     void handleMouseMotion(int, int);
     virtual ~Mouse();
     bool left, middle, right;
+    bool isLeftReleased, isMiddleReleased, isRightReleased;
+    bool isLeftPressed, isMiddlePressed, isRightPressed;
     double dx, dy;
 private:
 

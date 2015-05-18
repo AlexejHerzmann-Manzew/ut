@@ -42,12 +42,15 @@ OBJECTFILES= \
 	${OBJECTDIR}/ForOfWar.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/Keyboard.o \
+	${OBJECTDIR}/Math.o \
 	${OBJECTDIR}/Mouse.o \
 	${OBJECTDIR}/Point.o \
 	${OBJECTDIR}/Size.o \
 	${OBJECTDIR}/Terrain.o \
 	${OBJECTDIR}/Texture.o \
 	${OBJECTDIR}/Unit.o \
+	${OBJECTDIR}/gui/Container.o \
+	${OBJECTDIR}/gui/Element.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/units/BattleDriller.o \
 	${OBJECTDIR}/units/Builder.o \
@@ -113,6 +116,11 @@ ${OBJECTDIR}/Keyboard.o: Keyboard.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Keyboard.o Keyboard.cpp
 
+${OBJECTDIR}/Math.o: Math.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Math.o Math.cpp
+
 ${OBJECTDIR}/Mouse.o: Mouse.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -142,6 +150,16 @@ ${OBJECTDIR}/Unit.o: Unit.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Unit.o Unit.cpp
+
+${OBJECTDIR}/gui/Container.o: gui/Container.cpp 
+	${MKDIR} -p ${OBJECTDIR}/gui
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gui/Container.o gui/Container.cpp
+
+${OBJECTDIR}/gui/Element.o: gui/Element.cpp 
+	${MKDIR} -p ${OBJECTDIR}/gui
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gui/Element.o gui/Element.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
