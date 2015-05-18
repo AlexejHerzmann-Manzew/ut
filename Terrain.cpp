@@ -26,6 +26,7 @@ Terrain::Terrain() {
             terrain[x][y] /= 255;
         }
     }
+    
     for (int times = 0; times < 2; times++) {
         for (int x = 0; x < 4096; x++) {
             for (int y = 0; y < 4096; y++) {
@@ -73,9 +74,8 @@ int maxThenZero(int v) {
 }
 
 double Terrain::speed(double x, double y) {
-    return ((double)getTerrain(x/5, y/5))/256;
+    return ((double) getTerrain(x / 5, y / 5)) / 256;
 }
-
 
 void Terrain::digg(double radius, double x, double y) {
     radius /= 5;
@@ -83,18 +83,18 @@ void Terrain::digg(double radius, double x, double y) {
         for (int ry = y / 5 - radius; ry <= y / 5 + radius; ry++) {
             if (rx < 0 || ry < 0 || rx >= 4096 || ry >= 4096)
                 continue;
-            if(terrain[rx][ry] > 200)
+            if (terrain[rx][ry] > 200)
                 continue;
             float l = 1 - (sqrt(pow(rx - x / 5, 2) + pow(ry - y / 5, 2)) / ((float) radius));
             if (l < 0)l = 0;
-            terrain[rx][ry] += l * 15;
-            if (terrain[rx][ry] > 256) {
-                terrain[rx][ry] = 256;
+            if (terrain[rx][ry] < l * 222)
+                terrain[rx][ry] = l * 222;
+            if (terrain[rx][ry] > 255) {
+                terrain[rx][ry] = 255;
             }
         }
     }
 }
-
 
 void Terrain::render(double cx, double cy) {
     int width = glutGet(GLUT_WINDOW_WIDTH) / 5;

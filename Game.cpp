@@ -31,11 +31,12 @@ Game::Game() {
     display.height = 600;
     this->faction[0] = new Faction("Ruby", new Color(1.0f, 0.1f, 0.0f));
     this->faction[1] = new Faction("Lapis", new Color(0, 0.4f, 1));
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < 2; i++) {
         addUnit(new BattleDriller(1000, 850, 1, 0));
         addUnit(new BattleDriller(2000, 851, 0.1, 1));
     }
-    addUnit(new Builder(2000, 851, 0.1, 0));
+    addUnit(new Builder(2000, 851, 0.1, 1));
+    addUnit(new Builder(1000, 851, 0.1, 0));
 }
 
 void Game::updateChar(unsigned char c, int x, int y) {

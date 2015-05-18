@@ -38,6 +38,7 @@ Unit::~Unit() {
 void Unit::init() {
     this->radius = 28;
     this->target = tx = ty = -1;
+    this->px1 = px2 = py1 = py2 = -1;
     this->turnSpeed = 0.05;
     this->speed = 3;
     this->hp = this->maxHp = 100;
@@ -302,7 +303,7 @@ void Unit::smallTick() {
         double d = this->game->terrain.speed(x + cos(a) * radius / 3 * 2, y + sin(a) * radius / 3 * 2);
         x += cos(a) * 2 * d;
         y += sin(a) * 2 * d;
-        this->game->terrain.digg(radius / 2, x, y);
+        this->game->terrain.digg(radius, x, y);
     }
 
     if (y < radius)y += 3;

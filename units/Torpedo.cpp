@@ -17,7 +17,7 @@ void Torpedo::init() {
     this->phantom = true;
     this->untargetable = true;
     this->tx = this->ty = -1;
-    this->radius = 10;
+    this->radius = 30;
     this->turnSpeed = 0.02;
     this->speed = 20;
     this->range = -1;
@@ -74,7 +74,7 @@ void Torpedo::renderIntefaceVirtual() {
 
 void Torpedo::smallTickVirtual() {
     if (game->unit[target] != NULL) {
-        if (sqrt(pow(x - tx, 2) + pow(y - ty, 2)) <= 10) {
+        if (sqrt(pow(x - tx, 2) + pow(y - ty, 2)) <= radius) {
             game->terrain.digg(100, x, y);
             for (int i = 1; i <= 5; i++) {
                 game->fow.open(i * 50, x, y);

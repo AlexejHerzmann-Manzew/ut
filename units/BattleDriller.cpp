@@ -19,6 +19,7 @@ Texture BattleDriller::texture_turret("res/driller_turret.png");
 void BattleDriller::init() {
     this->reloadTime = 1000;
     this->tx = this->ty = -1;
+    this->px1 = px2 = py1 = py2 = -1;
     this->radius = 40;
     this->turnSpeed = 0.03;
     this->speed = 8;
