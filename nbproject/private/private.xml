@@ -6,6 +6,18 @@
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/gui/Element.hpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/gui/Container.hpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/Game.hpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/gui/GUI.cpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/gui/Button.cpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/gui/GUI.hpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/gui/Button.hpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/gui/Element.cpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/gui/Container.cpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/Game.cpp</file>
+            <file>file:/home/yew_mentzaki/NetBeansProjects/Underground%20Terror/main.cpp</file>
+        </group>
     </open-files>
 </project-private>

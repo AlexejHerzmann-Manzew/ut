@@ -41,8 +41,10 @@ bool Container::handleElement(Mouse* m, Keyboard* k) {
                     return true;
         }
         hovered(m);
-        if (m->isLeftReleased)
+        if (m->isLeftReleased){
             clicked(m);
+            m->isLeftReleased = false;
+        }
         return !transperent;
     }
     return false;

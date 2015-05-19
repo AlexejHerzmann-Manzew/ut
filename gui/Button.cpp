@@ -11,23 +11,26 @@
 #include "Button.hpp"
 
 Button::Button(int x, int y, int w, int h) : Element(x, y, w, h) {
-
+    visible = true;
 }
 
 Button::Button(int x, int y, int w, int h, int align) : Element(x, y, w, h, align) {
-
+    visible = true;
 }
 
 Button::Button() {
+    visible = true;
 }
 
 Button::Button(const Button& orig) {
+    visible = true;
 }
 
 Button::~Button() {
 }
 
 void Button::render() {
+    if(!visible)return;
     glTranslated(getX(), getY(), 0);
     glColor3f(1,1,0);
     glBegin(GL_QUADS);

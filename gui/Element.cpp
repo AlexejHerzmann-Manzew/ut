@@ -43,8 +43,10 @@ bool Element::handleElement(Mouse* m, Keyboard* k) {
     if (!visible)return false;
     if (m->x >= getX() & m->x <= getX() + w & m->y >= getY() & m->y <= getY() + h) {
         hovered(m);
-        if (m->isLeftReleased)
+        if (m->isLeftReleased){
             clicked(m);
+            m->isLeftReleased = false;
+        }
         return true;
     }
     return false;
