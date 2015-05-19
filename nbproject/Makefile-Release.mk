@@ -49,8 +49,10 @@ OBJECTFILES= \
 	${OBJECTDIR}/Terrain.o \
 	${OBJECTDIR}/Texture.o \
 	${OBJECTDIR}/Unit.o \
+	${OBJECTDIR}/gui/Button.o \
 	${OBJECTDIR}/gui/Container.o \
 	${OBJECTDIR}/gui/Element.o \
+	${OBJECTDIR}/gui/GUI.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/units/BattleDriller.o \
 	${OBJECTDIR}/units/Builder.o \
@@ -151,6 +153,11 @@ ${OBJECTDIR}/Unit.o: Unit.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Unit.o Unit.cpp
 
+${OBJECTDIR}/gui/Button.o: gui/Button.cpp 
+	${MKDIR} -p ${OBJECTDIR}/gui
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gui/Button.o gui/Button.cpp
+
 ${OBJECTDIR}/gui/Container.o: gui/Container.cpp 
 	${MKDIR} -p ${OBJECTDIR}/gui
 	${RM} "$@.d"
@@ -160,6 +167,11 @@ ${OBJECTDIR}/gui/Element.o: gui/Element.cpp
 	${MKDIR} -p ${OBJECTDIR}/gui
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gui/Element.o gui/Element.cpp
+
+${OBJECTDIR}/gui/GUI.o: gui/GUI.cpp 
+	${MKDIR} -p ${OBJECTDIR}/gui
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gui/GUI.o gui/GUI.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

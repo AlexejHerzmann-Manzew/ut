@@ -7,6 +7,7 @@
 
 #include <cstddef>
 #include <GL/glut.h>
+#include <GL/freeglut_std.h>
 
 #include "../Keyboard.hpp"
 #include "../Mouse.hpp"
@@ -35,14 +36,14 @@ Element::Element(int x, int y, int w, int h) {
     this->y = y;
     this->w = w;
     this->h = h;
-    this->align = GUI_ELEMENT_NONE_ALIGN;
+    this->align = GUI_NONE_ALIGN;
 }
 
-bool Element::handleElement(Mouse* m, Keyboard* k) {
+bool Element::handleElement(Mouse m, Keyboard k) {
     if (!visible)return false;
-    if (m->x >= getX() & m->x <= getX() + w & m->x >= getX() & m->x <= getX() + w) {
+    if (m.x >= getX() & m.x <= getX() + w & m.x >= getX() & m.x <= getX() + w) {
         hovered(m);
-        if (m->isLeftReleased)
+        if (m.isLeftReleased)
             clicked(m);
         return true;
     }
@@ -51,25 +52,25 @@ bool Element::handleElement(Mouse* m, Keyboard* k) {
 
 int Element::getX() {
     switch (align) {
-        case GUI_ELEMENT_LEFT_ALIGN:
+        case GUI_LEFT_ALIGN:
             if (parent != NULL) {
-                return parent->getX();
+                return parent->getX() + x;
             } else {
-                return 0;
+                return x;
             }
             break;
-        case GUI_ELEMENT_CENTER_ALIGN:
+        case GUI_CENTER_ALIGN:
             if (parent != NULL) {
-                return parent->getX() + (parent->w - w) / 2;
+                return parent->getX() + (parent->w - w) / 2 + x;
             } else {
-                return (glutGet(GLUT_WINDOW_WIDTH) - w) / 2;
+                return (glutGet(GLUT_WINDOW_WIDTH) - w) / 2 + x;
             }
             break;
-        case GUI_ELEMENT_RIGHT_ALIGN:
+        case GUI_RIGHT_ALIGN:
             if (parent != NULL) {
-                return parent->getX() - w;
+                return parent->getX() - w + x;
             } else {
-                return glutGet(GLUT_WINDOW_WIDTH) - w;
+                return glutGet(GLUT_WINDOW_WIDTH) - w + x;
             }
             break;
         default:
@@ -83,18 +84,43 @@ int Element::getX() {
 }
 
 int Element::getY() {
-    if (parent != NULL) {
-        return parent->getY() + y;
-    } else {
-        return y;
+    switch (verticalAlign) {
+        case GUI_TOP_ALIGN:
+            if (parent != NULL) {
+                return parent->getY() + y;
+            } else {
+                return y;
+            }
+            break;
+        case GUI_CENTER_ALIGN:
+            if (parent != NULL) {
+                return parent->getY() + (parent->h - h) / 2 + y;
+            } else {
+                return (glutGet(GLUT_WINDOW_HEIGHT) - h) / 2 + y;
+            }
+            break;
+        case GUI_BOTTOM_ALIGN:
+            if (parent != NULL) {
+                return parent->getY() - h + y;
+            } else {
+                return glutGet(GLUT_WINDOW_HEIGHT) - h + y;
+            }
+            break;
+        default:
+            if (parent != NULL) {
+                return parent->getY() + y;
+            } else {
+                return y;
+            }
+            break;
     }
 }
 
-void Element::clicked(Mouse*) {
-
+void Element::clicked(Mouse) {
+    
 }
 
-void Element::hovered(Mouse*) {
+void Element::hovered(Mouse) {
 
 }
 

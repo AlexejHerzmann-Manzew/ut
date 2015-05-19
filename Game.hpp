@@ -19,6 +19,8 @@
 #include "Texture.hpp"
 #include "Explossion.hpp"
 
+#include "gui/GUI.hpp"
+
 class Game {
 public:
     Game();
@@ -37,6 +39,7 @@ public:
     void handleMouseMotion(int, int);
     double abs(double);
     Size display;
+    GUI gui;
     Point camera, dcamera;
     Mouse mouse;
     Keyboard keyboard;

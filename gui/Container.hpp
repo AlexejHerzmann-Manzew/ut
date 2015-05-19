@@ -20,7 +20,10 @@ public:
     Container(int, int, int, int);
     Container(const Container& orig);
 
-    virtual bool handleElement(Mouse*, Keyboard*);
+    virtual void render();
+    bool transperent;
+
+    virtual bool handleElement(Mouse, Keyboard);
 
     void add(Element*);
     void remove(Element*);

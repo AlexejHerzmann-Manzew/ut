@@ -20,12 +20,18 @@
 #include "Keyboard.hpp"
 #include "Math.hpp"
 
+#include "gui/GUI.hpp"
+
 #include "units/BattleDriller.hpp"
 #include "units/Builder.hpp"
 
 using namespace std;
 
 Texture Game::grass("res/grass.png");
+
+void bClicked(Mouse* m) {
+    cout << "Button's clicked!" << endl;
+}
 
 Game::Game() {
     display.width = 800;
@@ -38,6 +44,9 @@ Game::Game() {
     }
     addUnit(new Builder(2000, 851, 0.1, 1));
     addUnit(new Builder(1000, 851, 0.1, 0));
+    Button* b = new Button(-50, 50, 30, 30, GUI_RIGHT_ALIGN);
+    //b->setClickListener(bClicked);
+    gui.add(b);
 }
 
 void Game::updateChar(unsigned char c, int x, int y) {
@@ -128,6 +137,7 @@ void Game::handleMouse(int button, int state, int x, int y) {
             }
         }
     }
+
 }
 
 void Game::handleMouseMotion(int x, int y) {
@@ -207,7 +217,7 @@ void Game::render() {
     for (int i = 0; i < 64; i++) {
         if (this->explossion[i] != NULL) {
             this->explossion[i]->render();
-            if(this->explossion[i]->t >= 30){
+            if (this->explossion[i]->t >= 30) {
                 this->explossion[i]->~Explossion();
                 this->explossion[i] = NULL;
             }
@@ -270,6 +280,8 @@ void Game::render() {
         }
         glEnd();
     }
+    glLoadIdentity();
+    gui.render();
     glDisable(GL_BLEND);
 }
 

@@ -126,6 +126,7 @@ int main(int argc, char** argv) {
     tickT.detach();
     thread smallTickT(smallTickThread);
     smallTickT.detach();
+    glutFullScreen();
     glutMainLoop();
     return 0;
 }
