@@ -38,7 +38,7 @@ void Button::render() {
         glVertex2d(0, h);
     }
     glEnd();
-    glTranslated(getX(), getY(), 0);
+    glTranslated(-getX(), -getY(), 0);
 }
 
 void Button::clicked(Mouse* m) {
