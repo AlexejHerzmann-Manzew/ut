@@ -33,15 +33,15 @@ Container::~Container() {
     transperent = true;
 }
 
-bool Container::handleElement(Mouse m, Keyboard k) {
+bool Container::handleElement(Mouse* m, Keyboard* k) {
     if (!visible)return false;
-    if (m.x >= getX() & m.x <= getX() + w & m.x >= getX() & m.x <= getX() + w) {
+    if (m->x >= getX() & m->x <= getX() + w & m->y >= getY() & m->y <= getY() + h) {
         for(int i = 64; i >= 0; i--){
             if(elements[i] != NULL && elements[i]->handleElement(m, k))
-                return true;
+                    return true;
         }
         hovered(m);
-        if (m.isLeftReleased)
+        if (m->isLeftReleased)
             clicked(m);
         return !transperent;
     }
@@ -49,8 +49,8 @@ bool Container::handleElement(Mouse m, Keyboard k) {
 }
 
 void Container::add(Element* e) {
-    for(int i = 0; i < 64; i++){
-        if(elements[i] == NULL){
+    for (int i = 0; i < 64; i++) {
+        if (elements[i] == NULL) {
             elements[i] = e;
             return;
         }
@@ -58,8 +58,8 @@ void Container::add(Element* e) {
 }
 
 void Container::remove(Element* e) {
-    for(int i = 0; i < 64; i++){
-        if(elements[i] == e){
+    for (int i = 0; i < 64; i++) {
+        if (elements[i] == e) {
             elements[i] = NULL;
             return;
         }
@@ -67,8 +67,8 @@ void Container::remove(Element* e) {
 }
 
 void Container::render() {
-    for(int i = 0; i < 64; i++){
-        if(elements[i] != NULL){
+    for (int i = 0; i < 64; i++) {
+        if (elements[i] != NULL) {
             elements[i]->render();
             return;
         }

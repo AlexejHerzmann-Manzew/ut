@@ -19,8 +19,8 @@ public:
     virtual void render();
     virtual ~Button();
 
-    virtual void clicked(Mouse);
-    virtual void hovered(Mouse);
+    virtual void clicked(Mouse*);
+    virtual void hovered(Mouse*);
 
     
     void setClickListener(void (*callback)(Mouse*));

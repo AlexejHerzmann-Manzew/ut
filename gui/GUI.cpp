@@ -26,10 +26,10 @@ GUI::GUI(const GUI& orig) {
 GUI::~GUI() {
 }
 
-bool GUI::handleElement(Mouse m, Keyboard k) {
-    for (int i = 64; i >= 0; i--) {
+bool GUI::handleElement(Mouse* m, Keyboard* k) {
+    for (int i = 63; i >= 0; i--) {
         if (elements[i] != NULL && elements[i]->handleElement(m, k))
-            return true;
+                return true;
     }
     return false;
 }

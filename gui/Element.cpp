@@ -39,11 +39,11 @@ Element::Element(int x, int y, int w, int h) {
     this->align = GUI_NONE_ALIGN;
 }
 
-bool Element::handleElement(Mouse m, Keyboard k) {
+bool Element::handleElement(Mouse* m, Keyboard* k) {
     if (!visible)return false;
-    if (m.x >= getX() & m.x <= getX() + w & m.x >= getX() & m.x <= getX() + w) {
+    if (m->x >= getX() & m->x <= getX() + w & m->y >= getY() & m->y <= getY() + h) {
         hovered(m);
-        if (m.isLeftReleased)
+        if (m->isLeftReleased)
             clicked(m);
         return true;
     }
@@ -116,11 +116,11 @@ int Element::getY() {
     }
 }
 
-void Element::clicked(Mouse) {
-    
+void Element::clicked(Mouse*) {
+
 }
 
-void Element::hovered(Mouse) {
+void Element::hovered(Mouse*) {
 
 }
 

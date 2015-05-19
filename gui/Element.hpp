@@ -29,9 +29,9 @@ public:
     Element(int, int, int, int, int);
     Element(const Element& orig);
     Element* parent;
-    virtual bool handleElement(Mouse, Keyboard);
-    virtual void clicked(Mouse);
-    virtual void hovered(Mouse);
+    virtual bool handleElement(Mouse*, Keyboard*);
+    virtual void clicked(Mouse*);
+    virtual void hovered(Mouse*);
     virtual void render();
     virtual ~Element();
 private:

@@ -41,12 +41,14 @@ void Button::render() {
     glTranslated(getX(), getY(), 0);
 }
 
-void Button::clicked(Mouse m) {
-    x++;
+void Button::clicked(Mouse* m) {
+    if(click != NULL)
+        click(m);
 }
 
-void Button::hovered(Mouse m) {
-    x++;
+void Button::hovered(Mouse* m) {
+    if(hover != NULL)
+        hover(m);
 }
 
 void Button::setClickListener(void(*callback)(Mouse*)) {

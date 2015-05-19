@@ -11,7 +11,7 @@
 #include "../Keyboard.hpp"
 #include "../Mouse.hpp"
 
-#include "Element.hpp";
+#include "Element.hpp"
 
 class Container : public Element{
 public:
@@ -23,7 +23,7 @@ public:
     virtual void render();
     bool transperent;
 
-    virtual bool handleElement(Mouse, Keyboard);
+    virtual bool handleElement(Mouse*, Keyboard*);
 
     void add(Element*);
     void remove(Element*);

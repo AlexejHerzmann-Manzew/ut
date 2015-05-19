@@ -17,7 +17,7 @@ public:
     GUI();
     GUI(const GUI& orig);
     virtual ~GUI();
-    bool handleElement(Mouse, Keyboard);
+    bool handleElement(Mouse*, Keyboard*);
     void add(Element*);
     void remove(Element*);
     void render();
