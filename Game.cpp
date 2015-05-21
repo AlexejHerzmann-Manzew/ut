@@ -24,6 +24,7 @@
 
 #include "units/BattleDriller.hpp"
 #include "units/Builder.hpp"
+#include "gui/Frame.hpp"
 
 using namespace std;
 
@@ -44,9 +45,14 @@ Game::Game() {
     }
     addUnit(new Builder(2000, 851, 0.1, 1));
     addUnit(new Builder(1000, 851, 0.1, 0));
-    Button* b = new Button(-50, 50, 30, 30, GUI_RIGHT_ALIGN);
+    Button* b = new Button(-5, -5, 256, 256, GUI_RIGHT_ALIGN);
+    b->verticalAlign = GUI_BOTTOM_ALIGN;
     b->setClickListener(bClicked);
     gui.add(b);
+    Button* b2 = new Button(-266, -5, 128, 256, GUI_RIGHT_ALIGN);
+    b2->verticalAlign = GUI_BOTTOM_ALIGN;
+    b2->setClickListener(bClicked);
+    gui.add(b2);
 }
 
 void Game::updateChar(unsigned char c, int x, int y) {
@@ -74,7 +80,7 @@ double Game::abs(double a) {
 
 void Game::handleMouse(int button, int state, int x, int y) {
     mouse.handleMouse(button, state, x, y);
-    if(gui.handleElement(&mouse, &keyboard))return;
+    if (!select) if (gui.handleElement(&mouse, &keyboard))return;
     if (mouse.right) {
         int maxRadius = 0;
         for (int i = 0; i < 256; i++) {
@@ -143,7 +149,7 @@ void Game::handleMouse(int button, int state, int x, int y) {
 
 void Game::handleMouseMotion(int x, int y) {
     mouse.handleMouseMotion(x, y);
-    if(gui.handleElement(&mouse, &keyboard))return;
+    if (!select) if (gui.handleElement(&mouse, &keyboard))return;
     if (mouse.middle) {
         dcamera.x -= mouse.dx;
         dcamera.y -= mouse.dy;
@@ -175,7 +181,7 @@ void Game::render() {
         if (select) {
             p2.x = camera.x + mouse.x;
             p2.y = camera.y + mouse.y;
-        } else {
+        } else if (!gui.handleElement(&mouse, &keyboard)) {
             select = true;
             p1.x = p2.x = camera.x + mouse.x;
             p1.y = p2.y = camera.y + mouse.y;
@@ -215,6 +221,7 @@ void Game::render() {
         glLoadIdentity();
         glTranslated(-camera.x, -camera.y, 0);
     }
+    
     this->fow.render(camera.x, camera.y);
     for (int i = 0; i < 64; i++) {
         if (this->explossion[i] != NULL) {
@@ -255,8 +262,8 @@ void Game::render() {
     }
     glEnable(GL_BLEND);
     if (select) {
-        glColor4f(1, 1, 1, 0.2f);
-        glBegin(GL_QUADS);
+        glColor4f(0, 0.54f, 0, 0.2f);
+        glBegin(GL_POLYGON);
         {
             glVertex2d(p1.x, p1.y);
             glVertex2d(p2.x, p1.y);
@@ -264,8 +271,7 @@ void Game::render() {
             glVertex2d(p1.x, p2.y);
         }
         glEnd();
-
-        glColor4f(1, 1, 1, 1);
+        glColor4f(0, 1, 0, 1);
         glBegin(GL_LINES);
         {
             glVertex2d(p1.x, p1.y);

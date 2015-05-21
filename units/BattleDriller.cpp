@@ -17,6 +17,7 @@ Texture BattleDriller::texture_team("res/driller_team.png");
 Texture BattleDriller::texture_turret("res/driller_turret.png");
 
 void BattleDriller::init() {
+    this->name = "Battle Driller";
     this->reloadTime = 1000;
     this->tx = this->ty = -1;
     this->px1 = px2 = py1 = py2 = -1;

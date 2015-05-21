@@ -128,7 +128,7 @@ void Unit::renderInterface() {
         glEnd();
     }
     if (this->selected) {
-        glColor3f(1, 1, 1);
+        glColor3f(0, 1, 0);
         glBegin(GL_LINES);
         {
             glVertex2f(-radius + 5, -radius);

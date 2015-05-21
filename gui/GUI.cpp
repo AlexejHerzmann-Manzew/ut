@@ -29,7 +29,7 @@ GUI::~GUI() {
 bool GUI::handleElement(Mouse* m, Keyboard* k) {
     for (int i = 63; i >= 0; i--) {
         if (elements[i] != NULL && elements[i]->handleElement(m, k))
-                return true;
+            return true;
     }
     return false;
 }
@@ -54,9 +54,15 @@ void GUI::remove(Element* e) {
 
 void GUI::render() {
     for (int i = 0; i < 64; i++) {
-        if (elements[i] != NULL) {
+        if (elements[i] != NULL)
             elements[i]->render();
-            return;
-        }
+
     }
 }
+
+/*
+ 
+ 
+    glutBitmapString(GLUT_BITMAP_9_BY_15, (const unsigned char*)str.c_str());
+ 
+ */

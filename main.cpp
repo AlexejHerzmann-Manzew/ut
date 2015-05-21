@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <stdio.h>
+#include <string>
 #include <GL/freeglut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -19,6 +20,7 @@
 ////////////////////////////////////////////
 
 #include "Game.hpp"
+#include "Texture.hpp"
 
 using namespace std;
 
@@ -42,13 +44,21 @@ int frame = 0, ttime, timebase = 0;
 Game game;
 bool done = false;
 
+int mx, my;
+
 void handleMouse(int button, int state, int x, int y) {
     game.handleMouse(button, state, x, y);
+    mx = x;
+    my = y;
 }
 
 void handleMouseMotion(int x, int y) {
     game.handleMouseMotion(x, y);
+    mx = x;
+    my = y;
 }
+
+Texture cursorNormal("res/cursor/normal.png");
 
 void render() {
 
@@ -61,8 +71,30 @@ void render() {
     glLoadIdentity();
     game.render();
     glEnd();
-    glFlush();
+    glColor3f(1, 1, 1);
 
+    glRasterPos2i(100, 120);
+    string str = "Hello";
+    cursorNormal.bind();
+    glEnable(GL_BLEND);
+    glBegin(GL_QUADS);
+    {
+        glVertex2d(mx, my + 32);
+        glTexCoord2d(0, 0);
+
+        glVertex2d(mx, my);
+        glTexCoord2d(1, 0);
+
+        glVertex2d(mx + 32, my);
+        glTexCoord2d(1, 1);
+
+        glVertex2d(mx + 32, my + 32);
+        glTexCoord2d(0, 1);
+    }
+    glEnd();
+    glDisable(GL_BLEND);
+    Texture::unbind();
+    glFlush();
     frame++;
     ttime = glutGet(GLUT_ELAPSED_TIME);
 
@@ -122,11 +154,11 @@ int main(int argc, char** argv) {
     glutSpecialFunc(updateSpecial);
     glutSpecialUpFunc(updateSpecialUp);
     glutPassiveMotionFunc(handleMouseMotion);
+    glutSetCursor(GLUT_CURSOR_NONE);
     thread tickT(tickThread);
     tickT.detach();
     thread smallTickT(smallTickThread);
     smallTickT.detach();
-    glutFullScreen();
     glutMainLoop();
     return 0;
 }

@@ -15,6 +15,7 @@ Texture Builder::texture("res/builder_standing.png");
 Texture Builder::texture_team("res/builder_team.png");
 
 void Builder::init() {
+    this->name = "Building Module";
     this->tx = this->ty = -1;
     this->radius = 50;
     this->turnSpeed = 0.02;

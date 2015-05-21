@@ -5,6 +5,8 @@
  * Created on May 5, 2015, 4:53 PM
  */
 
+#include <string>
+
 #include "Game.hpp"
 #include "Texture.hpp"
 
@@ -15,6 +17,7 @@ class Game;
 class Unit {
 public:
     static Texture destroyed;
+    std::string name;
     Unit();
     Unit(double, double, double, int);
     ~Unit();

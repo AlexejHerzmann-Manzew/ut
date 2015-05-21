@@ -9,6 +9,7 @@
 #include <GL/gl.h>
 
 #include "Button.hpp"
+#include "Frame.hpp"
 
 Button::Button(int x, int y, int w, int h) : Element(x, y, w, h) {
     visible = true;
@@ -30,27 +31,18 @@ Button::~Button() {
 }
 
 void Button::render() {
-    if(!visible)return;
-    glTranslated(getX(), getY(), 0);
-    glColor3f(1,1,0);
-    glBegin(GL_QUADS);
-    {
-        glVertex2d(0, 0);
-        glVertex2d(w, 0);
-        glVertex2d(w, h);
-        glVertex2d(0, h);
-    }
-    glEnd();
-    glTranslated(-getX(), -getY(), 0);
+    if (!visible)return;
+    glColor3f(1, 1, 1);
+    Frame::render(getX(), getY(), w, h);
 }
 
 void Button::clicked(Mouse* m) {
-    if(click != NULL)
+    if (click != NULL)
         click(m);
 }
 
 void Button::hovered(Mouse* m) {
-    if(hover != NULL)
+    if (hover != NULL)
         hover(m);
 }
 
