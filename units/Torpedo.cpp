@@ -21,7 +21,8 @@ void Torpedo::init() {
     this->turnSpeed = 0.02;
     this->speed = 20;
     this->range = -1;
-    this->faction = -1;
+    this->sonarIcon = 5;
+    this->faction = 2;
 }
 
 Torpedo::Torpedo() : Unit() {

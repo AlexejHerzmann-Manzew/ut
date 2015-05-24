@@ -54,6 +54,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/gui/Element.o \
 	${OBJECTDIR}/gui/Frame.o \
 	${OBJECTDIR}/gui/GUI.o \
+	${OBJECTDIR}/gui/Lebel.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/units/BattleDriller.o \
 	${OBJECTDIR}/units/Builder.o \
@@ -178,6 +179,11 @@ ${OBJECTDIR}/gui/GUI.o: gui/GUI.cpp
 	${MKDIR} -p ${OBJECTDIR}/gui
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gui/GUI.o gui/GUI.cpp
+
+${OBJECTDIR}/gui/Lebel.o: gui/Lebel.cpp 
+	${MKDIR} -p ${OBJECTDIR}/gui
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/gui/Lebel.o gui/Lebel.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

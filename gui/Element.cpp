@@ -43,7 +43,7 @@ bool Element::handleElement(Mouse* m, Keyboard* k) {
     if (!visible)return false;
     if (m->x >= getX() & m->x <= getX() + w & m->y >= getY() & m->y <= getY() + h) {
         hovered(m);
-        if (m->isLeftReleased){
+        if (m->isLeftReleased) {
             clicked(m);
             m->isLeftReleased = false;
         }
@@ -53,7 +53,7 @@ bool Element::handleElement(Mouse* m, Keyboard* k) {
 }
 
 int Element::getX() {
-    switch (align) {
+    switch (this->align) {
         case GUI_LEFT_ALIGN:
             if (parent != NULL) {
                 return parent->getX() + x;
@@ -75,6 +75,7 @@ int Element::getX() {
                 return glutGet(GLUT_WINDOW_WIDTH) - w + x;
             }
             break;
+        case GUI_NONE_ALIGN:
         default:
             if (parent != NULL) {
                 return parent->getX() + x;

@@ -18,6 +18,9 @@ class Texture {
 public:
     static void unbind();
     void bind();
+    Texture();
+    Texture(const Texture&);
+    Texture(Texture*);
     Texture(std::string);
     ~Texture();
     std::string name;

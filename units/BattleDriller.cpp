@@ -6,11 +6,14 @@
  */
 
 #include <GL/gl.h>
+#include <iostream>
 #include <math.h>
 
 #include "BattleDriller.hpp"
 #include "Torpedo.hpp"
 #include "../Texture.hpp"
+
+using namespace std;
 
 Texture BattleDriller::texture("res/driller_standing.png");
 Texture BattleDriller::texture_team("res/driller_team.png");
@@ -59,7 +62,7 @@ void BattleDriller::renderVirual() {
     }
     glEnd();
     texture.unbind();
-    this->game->faction[faction]->color->bind();
+        this->game->faction[faction]->color->bind();
     texture_team.bind();
     glBegin(GL_QUADS);
     {

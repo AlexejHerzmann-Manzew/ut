@@ -25,6 +25,7 @@
 #include "units/BattleDriller.hpp"
 #include "units/Builder.hpp"
 #include "gui/Frame.hpp"
+#include "gui/Lebel.hpp"
 
 using namespace std;
 
@@ -35,24 +36,33 @@ void bClicked(Mouse* m) {
 }
 
 Game::Game() {
+    this->sonarPics[0] = new Texture("res/icons/sonar/unit.png");
+    this->sonarPics[1] = new Texture("res/icons/sonar/powerplant.png");
+    this->sonarPics[2] = new Texture("res/icons/sonar/refinery.png");
+    this->sonarPics[3] = new Texture("res/icons/sonar/sonar.png");
+    this->sonarPics[4] = new Texture("res/icons/sonar/factory.png");
+    this->sonarPics[5] = new Texture("res/icons/sonar/torpedo.png");
+
     display.width = 800;
     display.height = 600;
     this->faction[0] = new Faction("Ruby", new Color(1.0f, 0.1f, 0.0f));
     this->faction[1] = new Faction("Lapis", new Color(0, 0.4f, 1));
-    for (int i = 0; i < 2; i++) {
-        addUnit(new BattleDriller(1000, 850, 1, 0));
-        addUnit(new BattleDriller(2000, 851, 0.1, 1));
+    this->faction[2] = new Faction("Torpedo", new Color(1, 1, 0));
+    for (int i = 0; i < 15; i++) {
+        addUnit(new BattleDriller(1000, 150, 1, 0));
+        addUnit(new BattleDriller(5000, 151, 0.1, 1));
     }
-    addUnit(new Builder(2000, 851, 0.1, 1));
-    addUnit(new Builder(1000, 851, 0.1, 0));
-    Button* b = new Button(-5, -5, 256, 256, GUI_RIGHT_ALIGN);
+    addUnit(new Builder(5000, 151, 0.1, 1));
+    addUnit(new Builder(1000, 150, 0.1, 0));
+    Container* b = new Container(-5, -5, 256, 256, GUI_RIGHT_ALIGN);
     b->verticalAlign = GUI_BOTTOM_ALIGN;
-    b->setClickListener(bClicked);
     gui.add(b);
-    Button* b2 = new Button(-266, -5, 128, 256, GUI_RIGHT_ALIGN);
+    Container* b2 = new Container(-5, -266, 256, 128, GUI_RIGHT_ALIGN);
     b2->verticalAlign = GUI_BOTTOM_ALIGN;
-    b2->setClickListener(bClicked);
     gui.add(b2);
+    unitLebel = new Lebel(8, 16, 100, 16, "");
+    b2->add(unitLebel);
+    b2->add(new Button(16, 48, 32, 32));
 }
 
 void Game::updateChar(unsigned char c, int x, int y) {
@@ -221,7 +231,7 @@ void Game::render() {
         glLoadIdentity();
         glTranslated(-camera.x, -camera.y, 0);
     }
-    
+
     this->fow.render(camera.x, camera.y);
     for (int i = 0; i < 64; i++) {
         if (this->explossion[i] != NULL) {
@@ -290,6 +300,45 @@ void Game::render() {
     }
     glLoadIdentity();
     gui.render();
+    glEnable(GL_BLEND);
+    glEnable(GL_TEXTURE_2D);
+    for (int i = 0; i < 256; i++) {
+        if (unit[i] != NULL) {
+            sonarPics[unit[i]->sonarIcon]->bind();
+            faction[unit[i]->faction]->color->bind();
+            int x = unit[i]->x;
+            int y = unit[i]->y;
+            glBegin(GL_QUADS);
+            {
+                glVertex2d((x) * 0.0109375 + display.width - 250 - 4, (y) * 0.0109375 + display.height - 250 - 4);
+                glTexCoord2f(0, 0);
+                glVertex2d((x) * 0.0109375 + display.width - 250 + 4, (y) * 0.0109375 + display.height - 250 - 4);
+                glTexCoord2f(1, 0);
+                glVertex2d((x) * 0.0109375 + display.width - 250 + 4, (y) * 0.0109375 + display.height - 250 + 4);
+                glTexCoord2f(1, 1);
+                glVertex2d((x) * 0.0109375 + display.width - 250 - 4, (y) * 0.0109375 + display.height - 250 + 4);
+                glTexCoord2f(0, 1);
+            }
+            glEnd();
+        }
+    }
+    Texture::unbind();
+    glColor4f(0, 1, 0, 1);
+    glBegin(GL_LINES);
+    {
+        glVertex2d((dcamera.x) * 0.0109375 + display.width - 250, (dcamera.y) * 0.0109375 + display.height - 250);
+        glVertex2d((dcamera.x + display.width) * 0.0109375 + display.width - 250, (dcamera.y) * 0.0109375 + display.height - 250);
+
+        glVertex2d((dcamera.x + display.width) * 0.0109375 + display.width - 250, (dcamera.y) * 0.0109375 + display.height - 250);
+        glVertex2d((dcamera.x + display.width) * 0.0109375 + display.width - 250, (dcamera.y + display.height) * 0.0109375 + display.height - 250);
+
+        glVertex2d((dcamera.x + display.width) * 0.0109375 + display.width - 250, (dcamera.y + display.height) * 0.0109375 + display.height - 250);
+        glVertex2d((dcamera.x) * 0.0109375 + display.width - 250, (dcamera.y + display.height) * 0.0109375 + display.height - 250);
+
+        glVertex2d((dcamera.x) * 0.0109375 + display.width - 250, (dcamera.y + display.height) * 0.0109375 + display.height - 250);
+        glVertex2d((dcamera.x) * 0.0109375 + display.width - 250, (dcamera.y) * 0.0109375 + display.height - 250);
+    }
+    glEnd();
     glDisable(GL_BLEND);
 }
 
@@ -309,10 +358,17 @@ void Game::smallTick() {
     if (dcamera.y >= 20480 - display.height)
         dcamera.y = 20480 - display.height;
 
-
+    int selectedGroup = 0;
+    string unitName;
     for (int i = 0; i < 256; i++) {
         if (this->unit[i] != NULL) {
             try {
+                if (unit[i]->selected) {
+                    selectedGroup++;
+                    if (selectedGroup == 1) {
+                        unitName = unit[i]->name;
+                    }
+                }
                 this->unit[i]->smallTick();
             } catch (const exception &e) {
 
@@ -321,6 +377,15 @@ void Game::smallTick() {
         if (i < 64 & this->explossion[i] != NULL) {
             this->explossion[i]->tick();
         }
+    }
+    if (selectedGroup == 0) {
+        unitLebel->value = "";
+    }
+    if (selectedGroup == 1) {
+        unitLebel->value = unitName;
+    }
+    if (selectedGroup >= 2) {
+        unitLebel->value = "Group (" + to_string(selectedGroup) + " units)";
     }
 }
 

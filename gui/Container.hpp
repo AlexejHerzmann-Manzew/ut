@@ -11,10 +11,13 @@
 #include "../Keyboard.hpp"
 #include "../Mouse.hpp"
 
+#include "Frame.hpp"
 #include "Element.hpp"
 
 class Container : public Element{
 public:
+    static Frame frame;
+    
     Container();
     Container(int, int, int, int, int);
     Container(int, int, int, int);

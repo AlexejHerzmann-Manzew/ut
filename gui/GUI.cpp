@@ -59,10 +59,3 @@ void GUI::render() {
 
     }
 }
-
-/*
- 
- 
-    glutBitmapString(GLUT_BITMAP_9_BY_15, (const unsigned char*)str.c_str());
- 
- */

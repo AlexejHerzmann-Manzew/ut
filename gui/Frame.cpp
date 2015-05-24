@@ -6,9 +6,10 @@
  */
 
 #include <GL/gl.h>
+#include <iostream>
 
-#include "Frame.hpp"
 #include "../Texture.hpp"
+#include "Frame.hpp"
 
 Frame::Frame() {
 }
@@ -18,13 +19,6 @@ Frame::Frame(const Frame& orig) {
 
 Frame::~Frame() {
 }
-
-Texture Frame::center("res/gui/frame_center.png");
-Texture Frame::frameBottom("res/gui/frame_bottom.png");
-Texture Frame::frameLeft("res/gui/frame_left.png");
-Texture Frame::frameTop("res/gui/frame_top.png");
-Texture Frame::angleBottom("res/gui/angle_bottom.png");
-Texture Frame::angleTop("res/gui/angle_top.png");
 
 void Frame::render(int x, int y, int w, int h) {
     w /= 16;

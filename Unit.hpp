@@ -32,6 +32,7 @@ public:
     void smallTick();
     virtual void smallTickVirtual();
     virtual void deploy();
+    int sonarIcon;
     int faction, hp, maxHp, target, removeTimer;
     int reloadTime, reloadAmmoTime, currentReload, currentAmmo;
     bool selected, forcedAttack;

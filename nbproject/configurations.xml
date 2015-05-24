@@ -16,6 +16,7 @@
       <itemPath>gui/GUI.hpp</itemPath>
       <itemPath>Game.hpp</itemPath>
       <itemPath>Keyboard.hpp</itemPath>
+      <itemPath>gui/Lebel.hpp</itemPath>
       <itemPath>Math.hpp</itemPath>
       <itemPath>Mouse.hpp</itemPath>
       <itemPath>Point.hpp</itemPath>
@@ -44,6 +45,7 @@
       <itemPath>gui/GUI.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
       <itemPath>Keyboard.cpp</itemPath>
+      <itemPath>gui/Lebel.cpp</itemPath>
       <itemPath>Math.cpp</itemPath>
       <itemPath>Mouse.cpp</itemPath>
       <itemPath>Point.cpp</itemPath>
@@ -178,6 +180,10 @@
       </item>
       <item path="gui/GUI.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="gui/Lebel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gui/Lebel.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="res/driller_standing.tga" ex="false" tool="3" flavor2="0">
@@ -292,6 +298,10 @@
       <item path="gui/GUI.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="gui/GUI.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="gui/Lebel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="gui/Lebel.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -11,6 +11,9 @@
 #include "Button.hpp"
 #include "Frame.hpp"
 
+Frame Button::frame("button");
+
+
 Button::Button(int x, int y, int w, int h) : Element(x, y, w, h) {
     visible = true;
 }
@@ -33,7 +36,7 @@ Button::~Button() {
 void Button::render() {
     if (!visible)return;
     glColor3f(1, 1, 1);
-    Frame::render(getX(), getY(), w, h);
+    frame.render(getX(), getY(), w, h);
 }
 
 void Button::clicked(Mouse* m) {

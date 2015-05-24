@@ -20,6 +20,7 @@
 #include "Explossion.hpp"
 
 #include "gui/GUI.hpp"
+#include "gui/Lebel.hpp"
 
 class Game {
 public:
@@ -38,13 +39,15 @@ public:
     void handleMouse(int, int, int, int);
     void handleMouseMotion(int, int);
     double abs(double);
+    Texture* sonarPics[6];
     Size display;
     GUI gui;
+    Lebel* unitLebel;
     Point camera, dcamera;
     Mouse mouse;
     Keyboard keyboard;
     Point p1, p2; bool select;
-    Faction* faction[2];
+    Faction* faction[3];
     Unit* unit[256];
     Explossion* explossion[64];
     Terrain terrain;

@@ -66,6 +66,19 @@ void Texture::unbind() {
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
+Texture::Texture() {
+
+}
+
+Texture::Texture(const Texture& origin){
+    
+}
+
+Texture::Texture(Texture* t) {
+    name = t->name;
+    cout << name << endl;
+}
+
 Texture::Texture(std::string n) {
     name = n;
     texture = 100500;

@@ -6,12 +6,15 @@
  */
 
 #include "Element.hpp"
+#include "Frame.hpp"
 
 #ifndef BUTTON_HPP
 #define	BUTTON_HPP
 
 class Button : public Element{
 public:
+    static Frame frame;
+    
     Button();
     Button(const Button& orig);
     Button(int, int, int, int);

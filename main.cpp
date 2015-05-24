@@ -58,6 +58,8 @@ void handleMouseMotion(int x, int y) {
     my = y;
 }
 
+int copyrastTimer = 15;
+Texture by("res/by.png");
 Texture cursorNormal("res/cursor/normal.png");
 
 void render() {
@@ -92,6 +94,24 @@ void render() {
         glTexCoord2d(0, 1);
     }
     glEnd();
+    if (copyrastTimer > 0) {
+        by.bind();
+        glBegin(GL_QUADS);
+        {
+            glVertex2d(5, 69);
+            glTexCoord2d(0, 0);
+
+            glVertex2d(5, 5);
+            glTexCoord2d(1, 0);
+
+            glVertex2d(69, 5);
+            glTexCoord2d(1, 1);
+
+            glVertex2d(69, 69);
+            glTexCoord2d(0, 1);
+        }
+        glEnd();
+    }
     glDisable(GL_BLEND);
     Texture::unbind();
     glFlush();
@@ -99,6 +119,8 @@ void render() {
     ttime = glutGet(GLUT_ELAPSED_TIME);
 
     if (ttime - timebase > 1000) {
+        if(copyrastTimer > 0)
+        copyrastTimer--;
         fps = frame * 1000.0 / (ttime - timebase);
         timebase = ttime;
         frame = 0;
